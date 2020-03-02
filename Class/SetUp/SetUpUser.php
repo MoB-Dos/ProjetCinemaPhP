@@ -1,6 +1,6 @@
 <?php
 
-class SetUp
+class SetUpUser
 {
   private $_nom,$_prenom,$_mail,$_login,$_mdp,$_mdp2,$_objet,$_sujet;
 
