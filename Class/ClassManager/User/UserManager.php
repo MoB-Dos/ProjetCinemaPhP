@@ -5,15 +5,15 @@ class UserManager
 
 {
 
-public function inscription(SetUp $donnees)
+public function inscription(SetUpUser $ajout)
 {
 
-    $nom = $donnees->getNom();
-    $prenom = $donnees->getPrenom();
-    $mail = $donnees->getMail();
-    $login =$donnees->getLogin();
-    $mdp = $donnees->getMdp();
-    $mdp2 = $donnees->getMdp2();
+    $nom = $ajout->getNom();
+    $prenom = $ajout->getPrenom();
+    $mail = $ajout->getMail();
+    $login =$ajout->getLogin();
+    $mdp = $ajout->getMdp();
+    $mdpc = $ajout->getMdp2();
 
     $admin=0;
     //Connexion à la base de données projetweb
@@ -47,7 +47,7 @@ public function inscription(SetUp $donnees)
       {
         $mdpc = md5($mdpc);
 
-        $req = $bdd->prepare('INSERT INTO stockagecompte (nom,prenom, login,mail,mdpc,mdp,admin) VALUES (?,?,?,?,?,?,?)');
+        $req = $bdd->prepare('INSERT INTO user (nom,prenom, login,mail,mdpc,mdp,admin) VALUES (?,?,?,?,?,?,?)');
         $req -> execute(array($nom,$prenom, $login,$mail,$mdpc,$mdp,$admin));
 
         //Envoi du mail de confirmation

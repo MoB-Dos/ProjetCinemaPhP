@@ -1,9 +1,9 @@
 <?php
 
-<?php
 
-require '../Class/User/UserManager.php';
-require '../SetUp/SetUpUser.php';
+
+require '../../Class/ClassManager/User/UserManager.php';
+require '../../Class/SetUp/SetUpUser.php';
 
 var_dump($_POST);
 
@@ -21,7 +21,7 @@ $add = new UserManager($ajout);
 
 $r = $add->Inscription($ajout);
 
- ?>
+
 
 
 
