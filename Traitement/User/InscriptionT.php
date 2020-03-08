@@ -5,7 +5,6 @@
 require '../../Class/ClassManager/User/UserManager.php';
 require '../../Class/SetUp/SetUpUser.php';
 
-var_dump($_POST);
 
 $ajout = new SetUpUser([
     'login' => $_POST['login'],
@@ -19,11 +18,7 @@ $ajout = new SetUpUser([
 
 $add = new UserManager($ajout);
 
-$r = $add->Inscription($ajout);
-
-
-
-
+$act = $add->Inscription($ajout);
 
 
 ?>
