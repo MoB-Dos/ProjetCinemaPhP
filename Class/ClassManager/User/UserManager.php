@@ -213,7 +213,69 @@ public function Deconnexion()
 
 }
 
+public function affichage()
+{
+  try
+  {
+  $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+  catch(Exception $e)
+  {
+    die('Erreur:'.$e->getMessage());
+  }
+    
+    //Commande sql pour selectionner dans la table utilisateur
+    $req = $bdd->prepare('SELECT * FROM user WHERE login = :login');
+    $req->execute(array('login' => $_SESSION['login']));
+    
+    $data=$req->fetchall();
+    
+    
+    //Affichage de chacune des donnees selon le profil_id
+    foreach ($data as $value) {
+    
+        echo "Nom : ".$value['nom'].'<br><br>';
+        echo "Prenom : ".$value['prenom'].'<br><br>';
+        echo "Mail : ".$value['mail'].'<br><br>' ;
+        echo "Votre login: ".$value['login'].'<br><br>' ;
+      }
 
+
+
+}
+
+
+public function ModificationUser(SetUpUser $connexion)
+{
+
+  setcookie('login',$_SESSION['login'], time() + 365*24*3600, null, null, false, true);
+
+
+  $nom = $donnees->getNom();
+  $prenom = $donnees->getPrenom();
+  $mail = $donnees->getMail();
+  $login =$donnees->getLogin();
+
+  try{
+  $bdd= new PDO('mysql:host=localhost;dbname=projetrestauration;charset=utf8','root','');
+  }
+
+  catch(Exception $e){
+    die('Erreur:'.$e->getMessage());
+  }
+
+
+
+  //Modification dans la table utilisateur
+    $req = $bdd->prepare('UPDATE stockagecompte SET login = ?, nom = ?, prenom = ?, mail = ? WHERE login = ?');
+    $a = $req -> execute(array($login, $nom,$prenom, $mail, $_SESSION['login']));
+
+
+    $this-> Deconnexion();
+
+    $_SESSION['login'] = $login;
+
+}
 
 
 }
