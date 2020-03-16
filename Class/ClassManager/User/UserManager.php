@@ -161,7 +161,7 @@ public function connexion(SetUpUser $connexion)
       {
         echo '<body onLoad="alert(\'Acces refuse\')">';
 
-        echo '<meta http-equiv="refresh" content="0;URL=Connexion.php">';
+        echo '<meta http-equiv="refresh" content="0;URL=../../ndex.php">';
       }
     }
     //Sinon on demande à remplir les champs vides
@@ -244,20 +244,66 @@ public function affichage()
 
 }
 
+public function AffichageModification()
+{
 
-public function ModificationUser(SetUpUser $connexion)
+
+try{
+  $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+}
+
+catch(Exception $e){
+  die('Erreur:'.$e->getMessage());
+}
+
+
+//Sélection dans la table utilisateur
+$req=$bdd->prepare('SELECT * FROM user WHERE login= ?');
+$req->execute(array( $_SESSION['login']));
+$data = $req->fetch();
+
+?>
+
+<!-- Formulaire de modification -->
+<form method="post" action="../../../Traitement/User/Info/ModifT.php">
+
+  Votre login:
+	<input type="text" name="login" value=<?php echo $data['login'];?>>
+  <br><br>
+
+  Votre nom:
+	<input type="text" name="nom" value=<?php echo $data['nom'];?>>
+	<br><br>
+
+	Votre prenom:
+	<input type="text" name="prenom" value=<?php echo $data['prenom'];?>>
+  <br><br>
+
+	Votre mail:
+	<input type="text" name="mail" value=<?php echo $data['mail'];?>>
+  <br><br>
+
+<input type="submit" value="Envoyer"/>
+
+</form>
+
+	<?php
+
+}
+
+public function Modification(SetUpUser $connexion)
 {
 
   setcookie('login',$_SESSION['login'], time() + 365*24*3600, null, null, false, true);
 
 
-  $nom = $donnees->getNom();
-  $prenom = $donnees->getPrenom();
-  $mail = $donnees->getMail();
-  $login =$donnees->getLogin();
+  $nom = $connexion->getNom();
+  $prenom = $connexion->getPrenom();
+  $mail = $connexion->getMail();
+  $login =$connexion->getLogin();
 
   try{
-  $bdd= new PDO('mysql:host=localhost;dbname=projetrestauration;charset=utf8','root','');
+    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
   }
 
   catch(Exception $e){
@@ -267,7 +313,7 @@ public function ModificationUser(SetUpUser $connexion)
 
 
   //Modification dans la table utilisateur
-    $req = $bdd->prepare('UPDATE stockagecompte SET login = ?, nom = ?, prenom = ?, mail = ? WHERE login = ?');
+    $req = $bdd->prepare('UPDATE user SET login = ?, nom = ?, prenom = ?, mail = ? WHERE login = ?');
     $a = $req -> execute(array($login, $nom,$prenom, $mail, $_SESSION['login']));
 
 

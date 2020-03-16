@@ -11,9 +11,12 @@ $show = new UserManager();
 								
 $act = $show->affichage();
 
+$act = $show->AffichageModification();
 
 
 
 
 
 ?>
+
+<input type="submit" value="retour" onclick="window.location='../../../ndex.php';" /> 

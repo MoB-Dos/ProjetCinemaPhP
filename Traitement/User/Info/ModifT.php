@@ -17,10 +17,10 @@ $Setup = new SetUpUser([
 $modif = new UserManager($Setup);
 
 
-$act = $modif->ModificationUser($Setup);
+$act = $modif->Modification($Setup);
 
 
-//header("location: ../View/Connexion-Form.php");
+header("location: ../../../View/User/Connexion.html");
 
 /*?>
 <input type="button" value="Deconnexion" onclick="window.location.href='../View/accueil.php'">

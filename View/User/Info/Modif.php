@@ -9,7 +9,7 @@ require '../../../Class/SetUp/SetUpUser.php';
 
 $show = new UserManager();
 								
-$act = $show->ModificationUser();
+$act = $show->AffichageModification();
 
 
 
