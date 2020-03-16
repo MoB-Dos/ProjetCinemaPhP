@@ -36,6 +36,8 @@ if (isset($_SESSION['login'])) {
       <input type="submit" value="inscription" onclick="window.location='View/User/inscription.html';" />     
 
       <?php
+
+      
   }
 
 ?>
