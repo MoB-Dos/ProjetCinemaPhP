@@ -7,4 +7,5 @@ include_once('init.php');
   'customer' => 'cus_Gv5q4C6q1laR4a',
   'items' => [['plan' => 'plan_Gv5vkGf9Os8lir']],
 ]);
+header('Location: ../ndex.php');
 ?>
