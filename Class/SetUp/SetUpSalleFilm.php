@@ -84,6 +84,8 @@ public function getPrix() { return $this->_prix; }
 public function getSalle() { return $this->_salle; }
 public function getPlace() { return $this->_place; }
 
+    }
+
 
 
  ?>
