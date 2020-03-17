@@ -24,13 +24,23 @@ class SetUp
           {
               // On appelle le setter.
               $this->$method($value);
+              var_dump($this);
           }
 
       }
   }
+/* faut peut etre tester un autre construct comme sa
+public function __construct(array $donnees)
+{
+  $this->login=$login;
+  $this->place=$place;
+  $this->date=$fate;
+  $this->heure=$heure;
+  $this->film=$film;
 
+}
 
-
+*/
 
 
   public function setLogin($login) {
