@@ -2,7 +2,7 @@
 
 class SetUp
 {
-  private $_login$_date,$_place,$_film,$_prix,$_heure;
+  private $_login,$_date,$_place,$_film,$_prix,$_heure;
 
 
 
@@ -76,18 +76,51 @@ public function setDate($date) {
 }
 
 
-//separation 
+//separation
 
 
-    
+
     public function setPrix($prix) {
 
-        if ($prix => 1 ) {
+        if ($_film="Three Kingdoms") {
+          $prix=15;
+        }
+
+        if ($_film="Joker") {
+          $prix=20;
+        }
+
+        if ($_film="The Witcher") {
+          $prix=30;
+        }
+
+        if ($_film="Bleds Génocide") {
+          $prix=150;
+        }
+
+        if ($_POST['forfait']="etudiant"){
+          $prix=$prix-$prix*0.90;
+        }
+
+        if ($_POST['forfait']="enfant"){
+          $prix=$prix-$prix*0.50;
+        }
+
+        if ($_POST['forfait']="navigo"){
+          $prix=$prix-$prix*0.99;
+        }
+
+        else {
+          $prix=$prix;
+        }
+
+
+      if ($prix> 1 ) {
             $this->_prix = $prix;
         } else { trigger_error('erreur prix',E_USER_WARNING);
           return; }
         }
-    
+
 
     public function setFilm($film) {
 
@@ -96,15 +129,15 @@ public function setDate($date) {
         } else { trigger_error('erreur film',E_USER_WARNING);
           return; }
       }
-  
+
 
       public function setHeure($heure) {
 
-        if () {
+        /*if () { //je ferais ce set quand je verais le format de l'heure recupéré sur sql afin de la comparer à x > date actuel
             $this->_heure = $heure;
-        } else { trigger_error('erreur heure',E_USER_WARNING);
+        } else { trigger_error('erreur heure',E_USER_WARNING);*/
           return; }
-      }
+
 
 
 
