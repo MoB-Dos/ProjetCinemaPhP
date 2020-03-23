@@ -1,8 +1,8 @@
 <?php
 
-class SetUp
+class SetUpComment
 {
-  private $_login,$_message;
+  private $_film,$_message,$_Note;
 
 
   public function __construct(array $donnees)
@@ -30,9 +30,9 @@ class SetUp
 
  
 
-  public function setLogin($login) {
-      if (is_string($login) && strlen($login) <= 100) {
-          $this->_login = $login;
+  public function setFilm($film) {
+      if (is_string($film) && strlen($film) <= 100) {
+          $this->_film = $film;
       } else {trigger_error('erreur login',E_USER_WARNING);
         return; }
   }
@@ -40,16 +40,24 @@ class SetUp
 
     public function setMessage($message) {
 
-        if (strlen($message) > 1 && strlen($objet) <= 200) {
+        if (strlen($message) > 1 && strlen($message) <= 200) {
             $this->_message = $message;
         } else { trigger_error('erreur message',E_USER_WARNING);
           return; }
       }
 
+      public function setNote($note) {
+
+        if (strlen($note) >= 1 && strlen($note) <= 5) {
+            $this->_note = $note;
+        } else { trigger_error('erreur message',E_USER_WARNING);
+          return; }
+      }
 
 
 public function getMessage() { return $this->_message; }
-public function getLogin() { return $this->_login; }
+public function getNote() { return $this->_note; }
+public function getFilm() { return $this->_film; }
 
 
 }
