@@ -10,6 +10,7 @@ $a = new SetUp([
   'date' => $_POST['date'],
   'heure' => $_POST['heure'],
   'film' => $_POST['film'],
+  'forfait' => $_POST['forfait'],
 ]);
 
 $oui = new reservationManager();

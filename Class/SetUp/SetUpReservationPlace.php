@@ -65,7 +65,7 @@ public function setPlace($place) {
 
 public function setDate($date) {
 
-  try{
+/*  try{
     $bdd= new PDO('mysql:host=localhost;dbname=projetrestauration;charset=utf8','root','');
     }
 
@@ -81,30 +81,32 @@ public function setDate($date) {
 
  if ($donnees['ladate'] < 50) {
       $this->_date = $date;
-  } else { trigger_error('erreur date',E_USER_WARNING);
+  } else { trigger_error('erreur date',E_USER_WARNING); */
+  $this->_date = $date;
+
     return; }
-}
+
 
 
 //separation
 
 
 
-    public function setPrix($prix) {
+    public function setPrix($forfait) {
 
-        if ($_film="Three Kingdoms") {
+        if ($_POST['film']="Three Kingdoms") {
           $prix=15;
         }
 
-        if ($_film="Joker") {
+        if ($_POST['film']="Joker") {
           $prix=20;
         }
 
-        if ($_film="The Witcher") {
+        if ($_POST['film']="The Witcher") {
           $prix=30;
         }
 
-        if ($_film="Bleds Génocide") {
+        if ($_POST['film']="Bleds Genocide") {
           $prix=150;
         }
 
@@ -119,16 +121,9 @@ public function setDate($date) {
         if ($_POST['forfait']="navigo"){
           $prix=$prix-$prix*0.99;
         }
-
-        else {
-          $prix=$prix;
-        }
-
-
-      if ($prix> 1 ) {
-            $this->_prix = $prix;
-        } else { trigger_error('erreur prix',E_USER_WARNING);
-          return; }
+        $this->_prix = $prix;
+        var_dump($prix);
+          return;
         }
 
 
@@ -146,6 +141,8 @@ public function setDate($date) {
         /*if () { //je ferais ce set quand je verais le format de l'heure recupéré sur sql afin de la comparer à x > date actuel
             $this->_heure = $heure;
         } else { trigger_error('erreur heure',E_USER_WARNING);*/
+        $this->_heure = $heure;
+
           return; }
 
 
