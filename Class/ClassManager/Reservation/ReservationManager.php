@@ -33,7 +33,9 @@ catch(Exception $e)
       echo "3D: ".$value['3D'].'<br><br>' ;
     }
 
-function reservationM(SetUp $donnees){
+
+}
+public function reservationM(SetUp $donnees){
   //Connexion à la base de données projetweb
 
     $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
@@ -44,10 +46,9 @@ function reservationM(SetUp $donnees){
       $donnees->getDate(),
       $donnees->getHeure(),
       $donnees->getFilm(),
-      $donnees->getPrix(),
+      $donnees->getForfait(),
       ));
 
-}
 }
 }
 
