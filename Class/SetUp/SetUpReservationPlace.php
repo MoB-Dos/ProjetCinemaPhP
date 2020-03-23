@@ -2,7 +2,7 @@
 
 class SetUp
 {
-  private $_login,$_date,$_place,$_film,$_prix,$_heure;
+  private $_login,$_date,$_place,$_film,$_heure, $_forfait;
 
 
 
@@ -65,7 +65,7 @@ public function setPlace($place) {
 
 public function setDate($date) {
 
-  try{
+/*  try{
     $bdd= new PDO('mysql:host=localhost;dbname=projetrestauration;charset=utf8','root','');
     }
 
@@ -81,64 +81,102 @@ public function setDate($date) {
 
  if ($donnees['ladate'] < 50) {
       $this->_date = $date;
-  } else { trigger_error('erreur date',E_USER_WARNING);
+  } else { trigger_error('erreur date',E_USER_WARNING); */
+  $this->_date = $date;
+
     return; }
-}
+
 
 
 //separation
 
+public function setFilm($film) {
+
+    if (strlen($film) > 1 && strlen($film) <= 20) {
+      if ($_POST['film']="Three Kingdoms") {
+        $forfait=15;
+      }
+
+      if ($_POST['film']="Joker") {
+        $forfait=20;
+      }
+
+      if ($_POST['film']="The Witcher") {
+        $forfait=30;
+      }
+
+      if ($_POST['film']="Bleds Genocide") {
+        $forfait=150;
+      }
+        $this->_film = $film;
+    } else { trigger_error('erreur film',E_USER_WARNING);
+      return; }
+  }
 
 
-    public function setPrix($prix) {
+    public function setForfait($forfait) {
 
-        if ($_film="Three Kingdoms") {
-          $prix=15;
+        if ($_POST['film']="Three Kingdoms") {
+          if ($_POST['forfait']="etudiant"){
+            $forfait=15-15*0.90;
+          }
+
+          if ($_POST['forfait']="enfant"){
+            $forfait=15-15*0.50;
+          }
+
+          if ($_POST['forfait']="navigo"){
+            $forfait=15-15*0.99;
+          }
         }
 
-        if ($_film="Joker") {
-          $prix=20;
+        if ($_POST['film']="Joker") {
+          if ($_POST['forfait']="etudiant"){
+            $forfait=20-20*0.90;
+          }
+
+          if ($_POST['forfait']="enfant"){
+            $forfait=20-20*0.50;
+          }
+
+          if ($_POST['forfait']="navigo"){
+            $forfait=20-20*0.99;
+          }
         }
 
-        if ($_film="The Witcher") {
-          $prix=30;
+        if ($_POST['film']="The Witcher") {
+          if ($_POST['forfait']="etudiant"){
+            $forfait=30-30*0.90;
+          }
+
+          if ($_POST['forfait']="enfant"){
+            $forfait=30-30*0.50;
+          }
+
+          if ($_POST['forfait']="navigo"){
+            $forfait=30-30*0.99;
+          }
         }
 
-        if ($_film="Bleds Génocide") {
-          $prix=150;
-        }
-
-        if ($_POST['forfait']="etudiant"){
-          $prix=$prix-$prix*0.90;
+        if ($_POST['film']="Bleds Genocide") {
+          $forfait=150-150*0.90;
         }
 
         if ($_POST['forfait']="enfant"){
-          $prix=$prix-$prix*0.50;
+          $forfait=150-150*0.50;
         }
 
         if ($_POST['forfait']="navigo"){
-          $prix=$prix-$prix*0.99;
+          $forfait=150-150*0.99;
         }
-
-        else {
-          $prix=$prix;
-        }
+        
 
 
-      if ($prix> 1 ) {
-            $this->_prix = $prix;
-        } else { trigger_error('erreur prix',E_USER_WARNING);
-          return; }
+        $this->_forfait= $forfait;
+          return;
         }
 
 
-    public function setFilm($film) {
-
-        if (strlen($film) > 1 && strlen($film) <= 20) {
-            $this->_film = $film;
-        } else { trigger_error('erreur film',E_USER_WARNING);
-          return; }
-      }
 
 
       public function setHeure($heure) {
@@ -146,6 +184,8 @@ public function setDate($date) {
         /*if () { //je ferais ce set quand je verais le format de l'heure recupéré sur sql afin de la comparer à x > date actuel
             $this->_heure = $heure;
         } else { trigger_error('erreur heure',E_USER_WARNING);*/
+        $this->_heure = $heure;
+
           return; }
 
 
@@ -155,7 +195,7 @@ public function setDate($date) {
 
 public function getFilm() { return $this->_film; }
 public function getHeure() { return $this->_heure; }
-public function getPrix() { return $this->_prix; }
+public function getForfait() { return $this->_forfait; }
 public function getDate() { return $this->_date; }
 public function getPlace() { return $this->_place; }
 public function getLogin() { return $this->_login; }

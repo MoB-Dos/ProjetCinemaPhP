@@ -23,7 +23,7 @@
                   <input type="radio" name="film" value="Three Kingdoms"/> Three Kingdoms<br />
                   <input type="radio" name="film" value="Joker"/> Joker<br />
                   <input type="radio" name="film" value="The Witcher"/> The Witcher<br />
-                  <input type="radio" name="film" value="Bleds Génocide"/>Bleds Génocide<br /><br>
+                  <input type="radio" name="film" value="Bleds Genocide"/>Bleds Génocide<br /><br>
 
                   Avez vous une reduction ?<br/>
                   <input type="radio" name="forfait" value="etudiant"/>tarif etudiant<br />
