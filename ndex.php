@@ -13,7 +13,9 @@ if (isset($_SESSION['login'])) {
 
       <input type="submit" value="Affichage" onclick="window.location='View/User/Info/Affichage.php';" />   
       
-      <input type="submit" value="Reservation" onclick="window.location='View/Reservation/AffichageReservation.php';" />   
+      <input type="submit" value="Reservation" onclick="window.location='View/Reservation/AffichageReservation.php';" />  
+      
+      <input type="submit" value="voir film" onclick="window.location='View/Film/PageFilm.php';" />     
 
       <?php
   
@@ -32,6 +34,10 @@ if (isset($_SESSION['login'])) {
       <input type="submit" value="Reservation" onclick="window.location='View/Reservation/AffichageReservation.php';" />   
 
       <input type="submit" value="Ajout Admin" onclick="window.location='View/Admin/AjoutAdmin.php';" />  
+
+      <input type="submit" value="voir film" onclick="window.location='View/Film/PageFilm.php';" /> 
+      
+      <input type="submit" value="ajout film" onclick="window.location='View/Admin/AjoutFilm.php';" />     
 
       <?php
   
