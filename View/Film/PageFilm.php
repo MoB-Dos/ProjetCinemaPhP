@@ -10,4 +10,4 @@
 
 <input type="image" class="film" id="Kingdom" alt="Login" src="../../Image/Affiche/ThreeKingdom.jpg" onclick="window.location='PageKingdom.php';">
 
-<input type="image" class="film" id=Tenet alt="Login" src="../../Image/Affiche/Tenet.jpg" onclick="window.location='PageTenet.php';"><input type="image" class="film" id=Drive alt="Login" src="../../Image/Affiche/Drive.jpg" onclick="window.location='PageDrive.php';">
+<input type="image" class="film" id=Tenet alt="Login" src="../../Image/Affiche/Tenet.jpg" onclick="window.location='PageTenet.php';"><input type="image" class="film" id=Drive alt="Login" src="../../Image/Affiche/Drive.jpg" onclick="window.location='PageDrive.php';"><input type="image" class="film" id=Batman alt="Login" src="../../Image/Affiche/Batman.jpg" onclick="window.location='PageBatman.php';"><input type="image" class="film" id=Batman alt="Login" src="../../Image/Affiche/Batman.jpg" onclick="window.location='PageBatman.php';">
