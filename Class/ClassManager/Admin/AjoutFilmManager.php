@@ -79,7 +79,7 @@ public function AjoutPage($nametrue)
     
     fputs($monfichier, 
     
-    '<?php
+    '
     
     session_start();
     require "../../Class/ClassManager/Comment/CommentManager.php";

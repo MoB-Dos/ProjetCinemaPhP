@@ -1,6 +1,6 @@
 <?php
 
-class SetUp
+class SetUpSalleFilm
 {
 
   private $_salle,$_film,$_description,$_place;
