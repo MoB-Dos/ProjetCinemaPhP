@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="fr">
 <head>
 	<title>EndGam - Gaming Magazine Template</title>
 	<meta charset="UTF-8">
@@ -39,6 +39,7 @@
 
 	<!-- Header section -->
 	<?php  require_once('NavBar.html') ?>
+
 	<!-- Header section end -->
 
 
@@ -198,10 +199,10 @@
 	<!-- Newsletter section -->
 	<section class="newsletter-section">
 		<div class="container">
-			<h2>Subscribe to our newsletter</h2>
+			<h2>S'inscrire à notre newsletter</h2>
 			<form class="newsletter-form">
-				<input type="text" placeholder="ENTER YOUR E-MAIL">
-				<button class="site-btn">subscribe <img src="img/icons/double-arrow.png" alt="#"/></button>
+				<input type="text" placeholder="Entrer votre mail">
+				<button class="site-btn">s'inscrire  <img src="img/icons/double-arrow.png" alt="#"/></button>
 			</form>
 		</div>
 	</section>
@@ -221,9 +222,9 @@
 				<img src="./img/logo.png" alt="">
 			</a>
 			<ul class="main-menu footer-menu">
-				<li><a href="">Home</a></li>
-				<li><a href="">Games</a></li>
-				<li><a href="">Reviews</a></li>
+				<li><a href="">Accueil</a></li>
+				<li><a href="">Film</a></li>
+				<li><a href="">Critique</a></li>
 				<li><a href="">News</a></li>
 				<li><a href="">Contact</a></li>
 			</ul>
@@ -234,7 +235,7 @@
 				<a href="#"><i class="fa fa-dribbble"></i></a>
 				<a href="#"><i class="fa fa-behance"></i></a>
 			</div>
-			<div class="copyright"><a href="">Colorlib</a> 2018 @ All rights reserved</div>
+			<div class="copyright"><a href="">Cinéma</a> 2020 @ tout droit reservé par Enzo et Killian</div>
 		</div>
 	</footer>
 	<!-- Footer section end -->
@@ -250,4 +251,4 @@
 	<script src="js/main.js"></script>
 
 	</body>
-</html>
+	</html>
