@@ -1,5 +1,5 @@
 <?php
-<?php
+
     
     session_start();
     require "../../Class/ClassManager/Comment/CommentManager.php";
