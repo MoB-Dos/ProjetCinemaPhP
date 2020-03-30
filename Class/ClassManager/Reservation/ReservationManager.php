@@ -1,4 +1,3 @@
-
 <?php
 
 class reservationManager
@@ -6,38 +5,42 @@ class reservationManager
 {
 
 
-
-
-public function reservationM(SetUp $donnees)
+public function reservationM(SetUpReservationPlace $ajoutReserv)
 {
+  $login = $ajoutReserv->getLogin();
+  $place = $ajoutReserv->getPlace();
+  $Date = $ajoutReserv->getDate();
+  $heure =$ajoutReserv->getHeure();
+  $film = $ajoutReserv->getFilm();
+  $Prix = $ajoutReserv->getPrix();
 
+var_dump($Prix);
 
-
-    //Connexion à la base de données projetweb
-
-        $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
-
-        die('Erreur:'.$e->getMessage());
-
-        $prepare = $bdd->prepare('INSERT INTO reservationplace (pseudo, commentaire) VALUES (?, ?, ?, ?, ?, ?)');
-        $a = $prepare->execute(array(
-          $donnees->getLogin(),
-          $donnees->getPlace(),
-          $donnees->getDate(),
-          $donnees->getHeure(),
-          $donnees->getFilm(),
-          $donnees->getPrix(),
-          ));
+  try
+  {
+  $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+  catch(Exception $e)
+  {
+    die('Erreur:'.$e->getMessage());
+  }
+ 
+        $req = $bdd->prepare('INSERT INTO reservationplace (login,place,date,heure,film,prix) VALUES (?,?,?,?,?,?)');
+        $req -> execute(array($login,$place,$Date,$heure,$film,$Prix));
+        
 }
 
+public function affichageReserv(){
 
-}
-        ?>
+  try
+  {
+  $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+  catch(Exception $e)
+  {
+    die('Erreur:'.$e->getMessage());
+  }
 
-  die('Erreur:'.$e->getMessage());
-}
-
-  //Commande sql pour selectionner dans la table utilisateur
   $req = $bdd->prepare('SELECT * FROM reservationplace WHERE login = :login');
   $req->execute(array('login' => $_SESSION['login']));
 
@@ -55,9 +58,13 @@ public function reservationM(SetUp $donnees)
       echo "3D: ".$value['3D'].'<br><br>' ;
     }
 
-
 }
-public function reservationM(SetUp $donnees){
+}
+       
+
+
+
+/*public function reservationM(SetUp $donnees){
   //Connexion à la base de données projetweb
 
     $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
@@ -72,6 +79,6 @@ public function reservationM(SetUp $donnees){
       ));
 
 }
-}
+}*/
 
 ?>

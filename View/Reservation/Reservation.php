@@ -25,11 +25,11 @@
                   <input type="radio" name="film" value="The Witcher"/> The Witcher<br />
                   <input type="radio" name="film" value="Bleds Genocide"/>Bleds Génocide<br /><br>
 
-                  Avez vous une reduction ?<br/>
-                  <input type="radio" name="forfait" value="etudiant"/>tarif etudiant<br />
-                  <input type="radio" name="forfait" value="enfant"/>tarif enfant<br />
-                  <input type="radio" name="forfait" value="navigo"/>navigo<br />
-                  <input type="radio" name="forfait" value="normal"/>non :(<br /></br>
+                  Nombre de Reduction : <br/>
+                  <input type="number" name="etudiant"/> tarif etudiant<br />
+                  <input type="number" name="enfant" /> tarif enfant<br />
+                  <input type="number" name="navigo" /> navigo<br />
+                  <input type="number" name="normal" /> non :(<br /></br>
 
             <button type="submit" value="submit" class="primary-btn text-uppercase">Souscrire à un visionage de film qualitatif</button><br></br>
 </form>

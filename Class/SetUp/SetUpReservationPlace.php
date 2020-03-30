@@ -1,9 +1,14 @@
 <?php
 
-class SetUp
-{
-  private $_login,$_date,$_place,$_film,$_heure, $_forfait;
 
+class SetUpReservationPlace
+{
+  private $_login,$_date,$_place,$_film,$_heure, $_forfait,$_prix,$_tabPrix;
+
+  private $Etud = 7.50;
+  private $Enf = 5;
+  private $Nav = 8;
+  private  $Norm = 11;
 
 
   public function __construct(array $donnees)
@@ -24,23 +29,11 @@ class SetUp
           {
               // On appelle le setter.
               $this->$method($value);
-              var_dump($this);
+    
           }
 
       }
   }
-/* faut peut etre tester un autre construct comme sa
-public function __construct(array $donnees)
-{
-  $this->login=$login;
-  $this->place=$place;
-  $this->date=$fate;
-  $this->heure=$heure;
-  $this->film=$film;
-
-}
-
-*/
 
 
   public function setLogin($login) {
@@ -50,17 +43,24 @@ public function __construct(array $donnees)
         return; }
   }
 
-
-
-
-
 public function setPlace($place) {
 
-  if ($place > 1 && $place <= 20) {
+  if ($place >= 1 && $place <= 20) {
       $this->_place = $place;
   } else { trigger_error('erreur place',E_USER_WARNING);
     return; }
 }
+
+
+public function setPrix($prix) {
+
+  if(isset($tabPrix)){
+  $Prix = (($Etud*$TabPrix['etudiant'])+($Enf*$TabPrix['enfant'])+($Nav*$TabPrix['navigo'])+($Norm*$TabPrix['normal']));
+  $this->_prix = $Prix;
+  } else { trigger_error('erreur prix',E_USER_WARNING);
+    return; }
+}
+
 
 
 public function setDate($date) {
@@ -92,29 +92,14 @@ public function setDate($date) {
 
 public function setFilm($film) {
 
-    if (strlen($film) > 1 && strlen($film) <= 20) {
-      if ($_POST['film']="Three Kingdoms") {
-        $forfait=15;
-      }
-
-      if ($_POST['film']="Joker") {
-        $forfait=20;
-      }
-
-      if ($_POST['film']="The Witcher") {
-        $forfait=30;
-      }
-
-      if ($_POST['film']="Bleds Genocide") {
-        $forfait=150;
-      }
-        $this->_film = $film;
+    if (isset($film)) {
+      $this->_film = $film;
     } else { trigger_error('erreur film',E_USER_WARNING);
       return; }
   }
 
 
-    public function setForfait($forfait) {
+   /* public function setForfait($forfait) {
 
         if ($_POST['film']="Three Kingdoms") {
           if ($_POST['forfait']="etudiant"){
@@ -174,7 +159,7 @@ public function setFilm($film) {
 
         $this->_forfait= $forfait;
           return;
-        }
+        }*/
 
 
 
@@ -195,10 +180,11 @@ public function setFilm($film) {
 
 public function getFilm() { return $this->_film; }
 public function getHeure() { return $this->_heure; }
-public function getForfait() { return $this->_forfait; }
+/*public function getForfait() { return $this->_forfait; }*/
 public function getDate() { return $this->_date; }
 public function getPlace() { return $this->_place; }
 public function getLogin() { return $this->_login; }
+public function getPrix() { return $this->_prix; }
 
 
 }

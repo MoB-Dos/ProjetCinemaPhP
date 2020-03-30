@@ -6,7 +6,7 @@ require '../../Class/ClassManager/Reservation/ReservationManager.php';
 
 
 
-$show = new ReservationManager();
+$show = new reservationManager();
 								
 $act = $show->affichageReserv();
 
