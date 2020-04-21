@@ -1,9 +1,7 @@
 <?php
 
 session_start ();
-if ($_SESSION['admin'] == 0)
-{
-}
+
 
 if (isset($_SESSION['login'])) {
 

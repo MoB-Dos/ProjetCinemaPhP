@@ -38,7 +38,7 @@
 	</div>
 
 	<!-- Header section -->
-	<?php  require_once('NavBar.html') ?>
+	<?php  require_once('NavBar.php') ?>
 
 	<!-- Header section end -->
 
@@ -61,34 +61,6 @@
 	<!-- Games section -->
 	<section class="games-section">
 		<div class="container">
-			<ul class="game-filter">
-				<li><a href="">A</a></li>
-				<li><a href="">B</a></li>
-				<li><a href="">C</a></li>
-				<li><a href="">D</a></li>
-				<li><a href="">E</a></li>
-				<li><a href="">F</a></li>
-				<li><a href="">G</a></li>
-				<li><a href="">H</a></li>
-				<li><a href="">I</a></li>
-				<li><a href="">J</a></li>
-				<li><a href="">K</a></li>
-				<li><a href="">L</a></li>
-				<li><a href="">M</a></li>
-				<li><a href="">N</a></li>
-				<li><a href="">O</a></li>
-				<li><a href="">P</a></li>
-				<li><a href="">Q</a></li>
-				<li><a href="">R</a></li>
-				<li><a href="">S</a></li>
-				<li><a href="">T</a></li>
-				<li><a href="">U</a></li>
-				<li><a href="">V</a></li>
-				<li><a href="">W</a></li>
-				<li><a href="">X</a></li>
-				<li><a href="">Y</a></li>
-				<li><a href="">Z</a></li>
-			</ul>
 			<div class="row">
 				<div class="col-xl-7 col-lg-8 col-md-7">
 					<div class="row">
@@ -155,14 +127,26 @@
 								<a href="game-single.html" class="read-more">En savoir plus  <img src="img/icons/double-arrow.png" alt="#"/></a>
 							</div>
 						</div>
+
+						<div class="col-lg-4 col-md-6">
+							<div class="game-item">
+								<img src="./img/joker.jpg" alt="#">
+								<h5>The Huricane</h5>
+								<a href="game-single.html" class="read-more">En savoir plus  <img src="img/icons/double-arrow.png" alt="#"/></a>
+							</div>
+						</div>
+
+
 					</div>
-					<div class="site-pagination">
+					<!--<div class="site-pagination">
 						<a href="#" class="active">01.</a>
 						<a href="#">02.</a>
 						<a href="#">03.</a>
-					</div>
+					</div>-->
+
 				</div>
-				<div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
+
+				<!--<div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
 					<div id="stickySidebar">
 						<div class="widget-item">
 							<div class="categories-widget">
@@ -204,7 +188,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</section>
@@ -241,34 +225,7 @@
 
 
 	<!-- Footer section -->
-	<footer class="footer-section">
-		<div class="container">
-			<div class="footer-left-pic">
-				<img src="img/footer-left-pic.png" alt="">
-			</div>
-			<div class="footer-right-pic">
-				<img src="img/footer-right-pic.png" alt="">
-			</div>
-			<a href="#" class="footer-logo">
-				<img src="./img/logo.png" alt="">
-			</a>
-			<ul class="main-menu footer-menu">
-				<li><a href="">Accueil</a></li>
-				<li><a href="">Film</a></li>
-				<li><a href="">Critique</a></li>
-				<li><a href="">News</a></li>
-				<li><a href="">Contact</a></li>
-			</ul>
-			<div class="footer-social d-flex justify-content-center">
-				<a href="#"><i class="fa fa-pinterest"></i></a>
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
-				<a href="#"><i class="fa fa-dribbble"></i></a>
-				<a href="#"><i class="fa fa-behance"></i></a>
-			</div>
-			<div class="copyright"><a href="">Cinéma</a> 2020 @ tout droit reservé par Enzo et Killian</div>
-		</div>
-	</footer>
+	<?php  require_once('Footer.php') ?>
 	<!-- Footer section end -->
 
 
