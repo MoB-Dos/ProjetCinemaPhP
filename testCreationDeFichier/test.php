@@ -45,7 +45,9 @@ $act = $show->CommentAff($film);
 
 );
 fclose($monfichier);
-$monfichier2 = fopen('../View/Film/PageFilm.php', 'a+');
+
+//$monfichier2 = fopen('../View/Film/PageFilm.php', 'a+');
+$monfichier2 = fopen('../template/films.php', 'a+');
 
 // 2 : on fera ici nos opérations sur le fichier...
 $ligne = fgets($monfichier2);
@@ -53,7 +55,15 @@ $ligne = fgets($monfichier2);
 //fseek($monfichier2, 700);
 
 
-fputs($monfichier2, '<input type="image" class="film" id='.$film.' alt="Login" src="../../Image/Affiche/'.$film.'.jpg" onclick="window.location='.$page.';">');
+//fputs($monfichier2, '<input type="image" class="film" id='.$film.' alt="Login" src="../../Image/Affiche/'.$film.'.jpg" onclick="window.location='.$page.';">');
+
+fputs($monfichier2, '<div class="col-lg-4 col-md-6">
+<div class="game-item">
+    <img src="./img/joker.jpg" alt="#">
+    <h5>The Huricane</h5>
+    <a href="game-single.html" class="read-more">En savoir plus  <img src="img/icons/double-arrow.png" alt="#"/></a>
+</div>
+</div>');
 
 // 3 : quand on a fini de l'utiliser, on ferme le fichier
 

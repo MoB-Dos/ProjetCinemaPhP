@@ -1,11 +1,11 @@
-<?php
+
 
     
     session_start();
     require "../../Class/ClassManager/Comment/CommentManager.php";
     require "../../Class/SetUp/SetUpComment.php";
     
-    $film = "";
+    $film = "test";
     
     $show= new CommentManager();
     
@@ -26,7 +26,7 @@
     
         <input type="number" id="note" name="note" min="1" max="5" required>
         
-        <input id="film" name="film" type="hidden" value="">
+        <input id="film" name="film" type="hidden" value="test">
     
         <button type="submit" value="submit" class="primary-btn text-uppercase">Send Comment</button>
     
