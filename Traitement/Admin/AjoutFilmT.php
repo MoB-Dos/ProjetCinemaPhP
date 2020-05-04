@@ -5,17 +5,23 @@ require '../../Class/SetUp/SetUpSalleFilm.php';
 
 $ajout = new SetUpSalleFilm([
     'salle' => $_POST['salle'],
-    'description' => $_POST['description'],
+    'synopsis' => $_POST['synopsis'],
 ]);
 
 
 $nametrue = $_POST['nom'];
+$Synopsis = $_POST['synopsis'];
+$Date = $_POST['date'];
 
 
 $add = new AjoutFilmManager();
 
 $act = $add->AjoutImage($nametrue, $_FILES['photo']);
 
-$act2 = $add->AjoutPage($nametrue );
+$act3 = $add->AjoutBDD($nametrue,$Synopsis,$Date);
+
+$act2 = $add->AjoutPage($nametrue,$Synopsis,$Date);
+
+
 
 ?>

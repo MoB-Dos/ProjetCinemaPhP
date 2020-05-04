@@ -67,10 +67,10 @@ public function setPlace($place) {
           return; }
       }
 
-      public function setDescription($description) {
+      public function setDescription($synopsis) {
 
-        if (strlen($description) > 1 && strlen($description) <= 200) {
-            $this->_description = $description;
+        if (strlen($synopsis) > 1 && strlen($synopsis) <= 200) {
+            $this->_synopsis = $synopsis;
         } else { trigger_error('erreur description',E_USER_WARNING);
           return; }
       }
@@ -79,7 +79,7 @@ public function setPlace($place) {
 
 
 public function getFilm() { return $this->_film; }
-public function getDescription() { return $this->_description; }
+public function getDescription() { return $this->_synopsis; }
 public function getPrix() { return $this->_prix; }
 public function getSalle() { return $this->_salle; }
 public function getPlace() { return $this->_place; }
