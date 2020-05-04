@@ -3,15 +3,12 @@
 session_start ();
 
 require '../../../Class/ClassManager/User/UserManager.php';
-require '../../../Class/SetUp/SetUpUser.php';
-
-
+require '../../../Class/SetUp/SetUpGestion.php';
 
 $show = new UserManager();
 
-$act = $show->affichage();
+$act = $show->Gestion();
 
-$act = $show->AffichageModification();
 
 
 

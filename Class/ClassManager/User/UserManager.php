@@ -54,7 +54,7 @@ public function inscription(SetUpUser $ajout)
     {
       if ($mdp == $mdpc)
       {
-        
+
         $mdpc = md5($mdpc);
 
         $req = $bdd->prepare('INSERT INTO user (nom,prenom, login,mail,mdpc,mdp,admin) VALUES (?,?,?,?,?,?,?)');
@@ -65,22 +65,22 @@ public function inscription(SetUpUser $ajout)
         $sujet = "Vous pourrez recevoir ici toutes les nouvauté ou encore les promotions sur nos fabuleux Hamburger.";
         $email = $mail;
 
-        
+
         $this-> Mail($objet,$sujet,$email);
         ?>
           <script type="text/javascript">
-            
+
                 var msg="Inscription reussie !"
-            
-            
+
+
               alert(msg);
 
               header("location: ../../ndex.php");
-            
+
           </script>
         <?php
 
-        
+
       }
 
       //Sinon, on affiche une boite de dialogue d'erreur
@@ -200,7 +200,7 @@ public function mail($objet,$sujet,$email)
       echo 'Message has been sent';
         } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    
+
 }
 
 }
@@ -223,17 +223,17 @@ public function affichage()
   {
     die('Erreur:'.$e->getMessage());
   }
-    
+
     //Commande sql pour selectionner dans la table utilisateur
     $req = $bdd->prepare('SELECT * FROM user WHERE login = :login');
     $req->execute(array('login' => $_SESSION['login']));
-    
+
     $data=$req->fetchall();
-    
-    
+
+
     //Affichage de chacune des donnees selon le profil_id
     foreach ($data as $value) {
-    
+
         echo "Nom : ".$value['nom'].'<br><br>';
         echo "Prenom : ".$value['prenom'].'<br><br>';
         echo "Mail : ".$value['mail'].'<br><br>' ;
@@ -291,6 +291,72 @@ $data = $req->fetch();
 
 }
 
+public function Gestion()
+{
+
+
+try{
+  $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+}
+
+catch(Exception $e){
+  die('Erreur:'.$e->getMessage());
+}
+$count=$bdd->query('SELECT COUNT(id) as nbid FROM user');
+$donnees = $count->fetch();
+echo $donnees['nbid'];
+for ($i=1; $i <$donnees['nbid']+1; $i++) {
+
+
+//Sélection dans la table utilisateur
+$req=$bdd->prepare('SELECT * FROM user WHERE id= ?');
+$req->execute(array($i));
+$data = $req->fetch();
+
+?>
+
+<!-- Formulaire de modification -->
+<form method="post" action="../../../Traitement/User/Info/GestionT.php">
+
+  login:
+	<input type="text" name="login" value=<?php echo $data['login'];?>>
+  <br><br>
+
+  nom:
+	<input type="text" name="nom" value=<?php echo $data['nom'];?>>
+	<br><br>
+
+	prenom:
+	<input type="text" name="prenom" value=<?php echo $data['prenom'];?>>
+  <br><br>
+
+  mail:
+	<input type="text" name="mail" value=<?php echo $data['mail'];?>>
+  <br><br>
+
+  Mdp:
+	<input type="text" name="mdp" value=<?php echo $data['mdp'];?>>
+  <br><br>
+
+  admin :
+  <input type="text" name="admin" value=<?php echo $data['admin'];?>>
+  <br><br>
+<input type="submit" value="Envoyer"/>
+
+
+</form>
+
+	<?php
+
+}
+}
+
+public function delete()
+{
+  $req=$bdd->prepare('DELETE FROM user WHERE id = ?;');
+  $req->execute(array($i-1));
+
+}
 public function Modification(SetUpUser $connexion)
 {
 
