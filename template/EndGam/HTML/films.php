@@ -6,23 +6,9 @@
 	<meta name="description" content="EndGam Gaming Magazine Template">
 	<meta name="keywords" content="endGam,gGaming, magazine, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->
-	<link href="img/favicon.ico" rel="shortcut icon"/>
-
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-
-
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/slicknav.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
-	<link rel="stylesheet" href="css/magnific-popup.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-
-	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="css/style.css"/>
+	
+	
+	<?php  require_once('linkCSS.html') ?>
 
 
 	<!--[if lt IE 9]>
@@ -111,7 +97,7 @@
 								  <div class="game-item">
 								  <img src='.$value['image'].' alt="#" width: 20px;
 								  height: 50px;>
-								  <h5>'.$value['nom'].'</h5>
+								  <h5>'.$value['film'].'</h5>
 								  <a href='.$value['lien'].' class="read-more">En savoir plus  <img src="img/icons/double-arrow.png" alt="#"/></a>
 							      </div>
 							      </div>';
@@ -220,13 +206,7 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.sticky-sidebar.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/main.js"></script>
+	<?php  require_once('linkJS.html') ?>
 
 	</body>
 </html>

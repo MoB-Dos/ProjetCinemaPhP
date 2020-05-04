@@ -1,108 +1,5 @@
-<?php
 
 
-class AjoutFilmManager
-{
-
-public function AjoutImage($nametrue)
-{
-
-$dossier = "../../Image/Affiche";
-$nomdufichier = $nametrue;
-
-// Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
-if (isset($_FILES['photo']) AND $_FILES['photo']['error'] == 0)
-{
-        // Testons si le fichier n'est pas trop gros
-        if ($_FILES['photo']['size'] <= 3145728)
-        {
-                // Testons si l'extension est autorisée
-                $infosfichier = pathinfo($_FILES['photo']['name']);
-                $extension_upload = $infosfichier['extension'];
-                $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
-                $name = basename($_FILES['photo']['name']);
-                if (in_array($extension_upload, $extensions_autorisees))
-                {
-                        // On peut valider le fichier et le stocker définitivement
-                        move_uploaded_file($_FILES['photo']['tmp_name'], "$dossier/$nomdufichier.$extension_upload");
-                        echo "L'envoi a bien été effectué !";
-                }
-                else
-                {
-                    echo 'extention non-autorisee';
-                }
-        }
-        else
-        {
-            echo 'image trop grosse';
-        }
-}
-elseif (isset($_FILES['photo']) AND $_FILES['photo']['error'] == UPLOAD_ERR_NO_FILE)
-{
-    echo 'fichier inexistant';
-}
-elseif (isset($_FILES['photo']) AND $_FILES['photo']['error'] == UPLOAD_ERR_PARTIAL)
-{
-    echo 'fichier uploadé que partiellement';
-}
-elseif (isset($_FILES['photo']) AND $_FILES['photo']['error'] == UPLOAD_ERR_INI_SIZE)
-{
-    echo 'fichier trop gros';
-}
-elseif (isset($_FILES['photo']) AND $_FILES['photo']['error'] == UPLOAD_ERR_FORM_SIZE)
-{
-    echo 'fichier trop gros';
-}
-elseif (!isset($_FILES['photo']))
-{
-    echo 'pas de variable';
-}
-else
-{
-    echo 'probleme a l\'envoi';
-}
-
-
-}
-
-public function AjoutPage($nametrue,$Synopsis,$Date)
-{
-
-	
-    $film = $nametrue;
-    $direction = "../../template/EndGam/HTML/Film/Page".$film.".php";
-	$page = "'Page".$film.".php'";
-	
-
-	try
-    {
-    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
-    }
-    catch(Exception $e)
-    {
-      die('Erreur:'.$e->getMessage());
-    }
-
-    //Sélection des données dans la table utilisateur
-
-
-	$req = $bdd->prepare('SELECT image from film WHERE film =?');
-    $req -> execute(array($film));
-	
-	$data=$req->fetch();
-
-	$image=$data[0];
-
-
-    // 1 : on ouvre le fichier
-    $monfichier = fopen($direction, 'c+');
-    
-    // 2 : on fera ici nos opérations sur le fichier...
-    $ligne = fgets($monfichier);
-    
-    fputs($monfichier, 
-
-'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -149,7 +46,7 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
 	<!-- Page top section -->
 	<section class="page-top-section set-bg" data-setbg="../img/page-top-bg/1.jpg">
 		<div class="page-info">
-			<h2>'.$film.'</h2>
+			<h2>Mulan</h2>
 			<div class="site-breadcrumb">
 			<a href="../home.php"> Home</a>  /
 			<a href="../films.php"><span href="../films.php" > autre Films</span></a>
@@ -163,16 +60,16 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
 	<section class="games-single-page">
 		<div class="container">
 			<div class="game-single-preview">
-				<img src="'.$image.'">
+				<img src="http://localhost/projetcinemaphp/Image/Affiche/Mulan.jpg" >
 			</div>
 			<div class="row">
 				<div class="col-xl-9 col-lg-8 col-md-7 game-single-content">
-					<h2 class="gs-title">'.$film.'</h2>
+					<h2 class="gs-title">Mulan</h2>
 					<h4>Synopsis : </h4>
-					<p>'.$Synopsis.'</p>
+					<p>elle fait la bagarre mais bon cest une fille donc askip cest pas la meme chose </p>
 
 					<h4>date de sortie : </h4>
-					<p>'.$Date.'</p>
+					<p>15/08/2020</p>
 
 					
 					
@@ -198,7 +95,7 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
 
 								<?Php 
 
-								$film = "'.$film.'";
+								$film = "Mulan";
 
 								$show= new CommentManager();
 								
@@ -251,44 +148,3 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
 
 	</body>
 	</html>
-'
-    
-    );
-    fclose($monfichier);
-
- 
-
-
-}
-
-
-public function AjoutBDD($nametrue,$Synopsis,$Date) 
-{
-    
-    $lien = "http://localhost/projetcinemaphp/template/EndGam/HTML/Film/Page$nametrue.php";
-    $image = "http://localhost/projetcinemaphp/Image/Affiche/$nametrue.jpg";
-
-
-    try
-    {
-    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
-    }
-    catch(Exception $e)
-    {
-      die('Erreur:'.$e->getMessage());
-    }
-
-    //Sélection des données dans la table utilisateur
-  
-    $req = $bdd->prepare('INSERT INTO film (film,image, lien,synopsis,date) VALUES (?,?,?,?,?)');
-    $req -> execute(array($nametrue,$image, $lien,$Synopsis,$Date));
-
-
-}
-
-
-}
-
-
-
-?>

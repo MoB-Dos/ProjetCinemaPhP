@@ -34,7 +34,7 @@ class CommentManager
     
       foreach ($data as $value) {
         
-        echo $value['login']."-note ".$value['note']."/5".'<br/>';
+        echo $value['login']." "."note ".$value['note']."/5".'<br/><br/>';
         echo $value['message'].'<br/><br/>';
         
       }
