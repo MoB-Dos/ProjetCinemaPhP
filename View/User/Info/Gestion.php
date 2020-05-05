@@ -8,7 +8,7 @@ require '../../../Class/SetUp/SetUpGestion.php';
 $show = new UserManager();
 
 $act = $show->Gestion();
-
+$act = $show->delete();
 
 
 

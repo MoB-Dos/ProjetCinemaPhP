@@ -340,6 +340,8 @@ $data = $req->fetch();
 
   admin :
   <input type="text" name="admin" value=<?php echo $data['admin'];?>>
+
+
   <br><br>
 <input type="submit" value="Envoyer"/>
 
@@ -353,10 +355,60 @@ $data = $req->fetch();
 
 public function delete()
 {
-  $req=$bdd->prepare('DELETE FROM user WHERE id = ?;');
-  $req->execute(array($i-1));
+  ?>
+  <form method="post" action=<?php echo $_SERVER['SCRIPT_NAME']; ?>>
 
+  taper l'id à supprimer
+  <input type="number" name="delete"><br></br>
+  <input type="submit" value="supprimer" onclick=""/><br>
+
+  <?php
+  try{
+    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+
+  catch(Exception $e){
+    die('Erreur:'.$e->getMessage());
+  }
+  $req2=$bdd->prepare('DELETE FROM user WHERE id = ?');
+  $req2->execute(array($_POST['delete']));
+
+/* à utiliser si on décide de modifier id dans la base de données, aucun template ou css pour des raison pratique écidente.
+  ?>
+  <h4> Attention la suppression d'un id implique la création d'un nouvel utilisateur avec cet id pour une meilleur gestion</h4> </br>
+
+  id:
+  <input type="text" name="id" >
+  <br><br>
+
+  login:
+  <input type="text" name="login" >
+  <br><br>
+
+  nom:
+  <input type="text" name="nom" >
+  <br><br>
+
+  prenom:
+  <input type="text" name="prenom" >
+  <br><br>
+
+  mail:
+  <input type="text" name="mail" >
+  <br><br>
+
+  Mdp:
+  <input type="text" name="mdp" >
+  <br><br>
+
+  admin :
+  <input type="text" name="admin" >
+  <br><br>
+
+  <?php */
 }
+
+
 public function Modification(SetUpUser $connexion)
 {
 
