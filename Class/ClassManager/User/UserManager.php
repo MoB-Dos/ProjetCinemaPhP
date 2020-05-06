@@ -305,44 +305,43 @@ catch(Exception $e){
 $count=$bdd->query('SELECT COUNT(id) as nbid FROM user');
 $donnees = $count->fetch();
 echo $donnees['nbid'];
-for ($id=1; $id <$donnees['nbid']+1; $id++) {
+for ($id=0; $id <$donnees['nbid']; $id++) {
 
 
 //Sélection dans la table utilisateur
-$req=$bdd->prepare('SELECT * FROM user WHERE id= ?');
-$req->execute(array($id));
-$data = $req->fetch();
+$req=$bdd->query('SELECT * FROM user ORDER BY ID');
+$data = $req->fetchall();
 
 ?>
 
 <!-- Formulaire de modification -->
 <form method="post" action="../../../Traitement/User/Info/GestionT.php">
   id:
-  <input type="text" name="id" readonly value=<?php echo $id;?>>
+  <input type="text" name="id" readonly value=<?php echo $data[$id][0];?>>
   <br><br>
 
   login:
-	<input type="text" name="login" value=<?php echo $data['login'];?>>
+	<input type="text" name="login" value=<?php echo $data[$id][3];?>>
   <br><br>
 
   nom:
-	<input type="text" name="nom" value=<?php echo $data['nom'];?>>
+	<input type="text" name="nom" value=<?php echo $data[$id][1];?>>
 	<br><br>
 
 	prenom:
-	<input type="text" name="prenom" value=<?php echo $data['prenom'];?>>
+	<input type="text" name="prenom" value=<?php echo $data[$id][2];?>>
   <br><br>
 
   mail:
-	<input type="text" name="mail" value=<?php echo $data['mail'];?>>
+	<input type="text" name="mail" value=<?php echo $data[$id][4];?>>
   <br><br>
 
   Mdp:
-	<input type="text" name="mdp" value=<?php echo $data['mdp'];?>>
+	<input type="text" name="mdp" value=<?php echo $data[$id][6];?>>
   <br><br>
 
   admin :
-  <input type="text" name="admin" value=<?php echo $data['admin'];?>>
+  <input type="text" name="admin" value=<?php echo $data[$id][7];?>>
 
 
   <br><br>
