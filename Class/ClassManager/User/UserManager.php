@@ -305,41 +305,45 @@ catch(Exception $e){
 $count=$bdd->query('SELECT COUNT(id) as nbid FROM user');
 $donnees = $count->fetch();
 echo $donnees['nbid'];
-for ($i=1; $i <$donnees['nbid']+1; $i++) {
+for ($id=0; $id <$donnees['nbid']; $id++) {
 
 
 //Sélection dans la table utilisateur
-$req=$bdd->prepare('SELECT * FROM user WHERE id= ?');
-$req->execute(array($i));
-$data = $req->fetch();
+$req=$bdd->query('SELECT * FROM user ORDER BY ID');
+$data = $req->fetchall();
 
 ?>
 
 <!-- Formulaire de modification -->
 <form method="post" action="../../../Traitement/User/Info/GestionT.php">
+  id:
+  <input type="text" name="id" readonly value=<?php echo $data[$id][0];?>>
+  <br><br>
 
   login:
-	<input type="text" name="login" value=<?php echo $data['login'];?>>
+	<input type="text" name="login" value=<?php echo $data[$id][3];?>>
   <br><br>
 
   nom:
-	<input type="text" name="nom" value=<?php echo $data['nom'];?>>
+	<input type="text" name="nom" value=<?php echo $data[$id][1];?>>
 	<br><br>
 
 	prenom:
-	<input type="text" name="prenom" value=<?php echo $data['prenom'];?>>
+	<input type="text" name="prenom" value=<?php echo $data[$id][2];?>>
   <br><br>
 
   mail:
-	<input type="text" name="mail" value=<?php echo $data['mail'];?>>
+	<input type="text" name="mail" value=<?php echo $data[$id][4];?>>
   <br><br>
 
   Mdp:
-	<input type="text" name="mdp" value=<?php echo $data['mdp'];?>>
+	<input type="text" name="mdp" value=<?php echo $data[$id][6];?>>
   <br><br>
 
   admin :
-  <input type="text" name="admin" value=<?php echo $data['admin'];?>>
+  <input type="text" name="admin" value=<?php echo $data[$id][7];?>>
+
+
   <br><br>
 <input type="submit" value="Envoyer"/>
 
@@ -353,10 +357,100 @@ $data = $req->fetch();
 
 public function delete()
 {
-  $req=$bdd->prepare('DELETE FROM user WHERE id = ?;');
-  $req->execute(array($i-1));
+  ?>
+  <form method="post" action=<?php echo $_SERVER['SCRIPT_NAME']; ?>>
+
+  taper l'id à supprimer
+  <input type="text" name="delete" value='rien'><br></br>
+  <input type="submit" value="supprimer" /><br>
+
+  <?php
+  try{
+    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+
+  catch(Exception $e){
+    die('Erreur:'.$e->getMessage());
+  }
+  ini_set('display_errors', 'off'); // pour ne pas afficher l'erreur à cause de la valeur par défaut du post delete qui permet de ne pas supprimer un id en boucle
+  $req2=$bdd->prepare('DELETE FROM user WHERE id = ?');
+  $req2->execute(array($_POST['delete']));
+  error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
+
+
+/* à utiliser si on décide de modifier id dans la base de données, aucun template ou css pour des raison pratique écidente.
+  ?>
+  <h4> Attention la suppression d'un id implique la création d'un nouvel utilisateur avec cet id pour une meilleur gestion</h4> </br>
+
+  id:
+  <input type="text" name="id" >
+  <br><br>
+
+  login:
+  <input type="text" name="login" >
+  <br><br>
+
+  nom:
+  <input type="text" name="nom" >
+  <br><br>
+
+  prenom:
+  <input type="text" name="prenom" >
+  <br><br>
+
+  mail:
+  <input type="text" name="mail" >
+  <br><br>
+
+  Mdp:
+  <input type="text" name="mdp" >
+  <br><br>
+
+  admin :
+  <input type="text" name="admin" >
+  <br><br>
+
+  <?php */
+}
+
+public function ModificationGestion(SetUpGestion $connexion)
+{
+
+//  setcookie('login',$_SESSION['login'], time() + 365*24*3600, null, null, false, true);
+
+
+  $nom = $connexion->getNom();
+  $prenom = $connexion->getPrenom();
+  $mail = $connexion->getMail();
+  $login =$connexion->getLogin();
+  $mdp =$connexion->getMdp();
+  $admin =$connexion->getAdmin();
+  $id =$connexion->getId();
+
+
+  try{
+    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+
+  catch(Exception $e){
+    die('Erreur:'.$e->getMessage());
+  }
+
+
+
+  //Modification dans la table utilisateur
+    $req = $bdd->prepare('UPDATE user SET login = ?, nom = ?, prenom = ?, mail = ?, mdp = ?, mdpc = ?, admin = ?  WHERE id = ?');
+    $a = $req -> execute(array($login, $nom,$prenom, $mail, $mdp, md5($mdp), $admin, $id));
+
+
+    $this-> Deconnexion();
+
+    $_SESSION['login'] = $login;
 
 }
+
+
 public function Modification(SetUpUser $connexion)
 {
 
