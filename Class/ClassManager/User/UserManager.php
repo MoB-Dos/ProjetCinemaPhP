@@ -449,7 +449,80 @@ public function ModificationGestion(SetUpGestion $connexion)
     $_SESSION['login'] = $login;
 
 }
+public function MdpOublier(SetUpGestion $connexion)
+{
+  try{
+    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
 
+  catch(Exception $e){
+    die('Erreur:'.$e->getMessage());
+  }
+
+  $mail = $connexion->getMail();
+  $verif=rand(4000, 9999);
+  $req = $bdd->prepare('SELECT id FROM user WHERE mail= ?');
+  $req -> execute(array($mail));
+  $objet = "Rebienvenue dans le club !";
+  $sujet = "Voici votre code unique : ".$verif."";
+  $email = $mail;
+  $this-> Mail($objet,$sujet,$email);
+  ?>
+  <script type="text/javascript">
+
+        var msg="mail envoyer !"
+
+
+      alert(msg);
+  </script>
+
+<?php
+
+header("location: ../../../View/User/MdpOublier2.php");
+
+
+}
+public function MdpOublier2(SetUpGestion $connexion)
+{
+
+  $mdp = $ajout->getMdp();
+  $mdpc = $ajout->getMdp2();
+
+
+  $req = $bdd->prepare('SELECT id FROM user WHERE mail= ?');
+  $req -> execute(array($mail));
+
+
+    if ($mdp == $mdpc)
+    {
+
+      $mdpc = md5($mdpc);
+
+      $req = $bdd->prepare('UPDATE user SET mdp = ?, mdpc= ? WHERE mail = ?');
+      $req -> execute(array($mdpc,$mdp,$mail));
+
+      //Envoi du mail de confirmation
+      $objet = "Rebienvenue dans le club !";
+      $sujet = "Pour changer votre mot de passe cliquer sur ce lien : https://www.zerator.com";
+      $email = $mail;
+
+
+      $this-> Mail($objet,$sujet,$email);
+      ?>
+        <script type="text/javascript">
+
+              var msg="Modification de mdp réussi !"
+
+
+            alert(msg);
+
+            header("location: ../../ndex.php");
+
+        </script>
+      <?php
+
+
+}}
 
 public function Modification(SetUpUser $connexion)
 {

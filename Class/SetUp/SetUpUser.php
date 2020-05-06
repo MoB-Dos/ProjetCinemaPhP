@@ -61,7 +61,7 @@ class SetUpUser
   public function setMdp($mdp) {
 
     if (strlen($mdp) > 5 && strlen($mdp) <= 10) {
-      
+
         $this->_mdp = $mdp;
     } else { trigger_error('erreur mdp',E_USER_WARNING);
       return; }
@@ -70,7 +70,7 @@ class SetUpUser
 public function setMdp2($mdp2) {
 
   if (strlen($mdp2) > 5 && strlen($mdp2) <= 10) {
-    
+
       $this->_mdp2 = $mdp2;
   } else { trigger_error('erreur mdp',E_USER_WARNING);
     return; }
