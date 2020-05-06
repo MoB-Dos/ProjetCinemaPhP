@@ -1,8 +1,8 @@
 <?php
 
-class SetUpUser
+class SetUpGestion
 {
-  private $_nom,$_prenom,$_mail,$_login,$_mdp,$_admin;
+  private $_nom,$_prenom,$_mail,$_login,$_mdp,$_admin, $id;
 
   public function __construct(array $donnees)
   {
@@ -76,13 +76,21 @@ public function setAdmin($admin) {
     return; }
 }
 
+public function setId($id) {
 
+  if (isset($id)) {
+
+      $this->_id = $id;
+  } else { trigger_error('erreur mdp',E_USER_WARNING);
+    return; }
+}
 public function getNom() { return $this->_nom; }
 public function getPrenom() { return $this->_prenom; }
 public function getLogin() { return $this->_login; }
 public function getMail() { return $this->_mail; }
 public function getMdp() { return $this->_mdp; }
 public function getAdmin() { return $this->_admin; }
+public function getId() { return $this->_id; }
 
 
 }

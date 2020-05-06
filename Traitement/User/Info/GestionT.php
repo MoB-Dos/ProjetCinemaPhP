@@ -7,8 +7,10 @@ require '../../../Class/SetUp/SetUpGestion.php';
 
 var_dump($_POST);
 
-$Setup = new SetUpUser([
+$Setup = new SetUpGestion([
+
     'login' => $_POST['login'],
+    'id' =>$_POST['id'],
     'nom' => $_POST['nom'],
     'prenom' => $_POST['prenom'],
     'mail' =>$_POST['mail'],
@@ -20,7 +22,7 @@ $Setup = new SetUpUser([
 $modif = new UserManager($Setup);
 
 
-$act = $modif->Modification($Setup);
+$act = $modif->ModificationGestion($Setup);
 
 
 header("location: ../../../View/User/Connexion.html");

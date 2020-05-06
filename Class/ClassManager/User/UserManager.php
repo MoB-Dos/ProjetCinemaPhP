@@ -305,18 +305,21 @@ catch(Exception $e){
 $count=$bdd->query('SELECT COUNT(id) as nbid FROM user');
 $donnees = $count->fetch();
 echo $donnees['nbid'];
-for ($i=1; $i <$donnees['nbid']+1; $i++) {
+for ($id=1; $id <$donnees['nbid']+1; $id++) {
 
 
 //Sélection dans la table utilisateur
 $req=$bdd->prepare('SELECT * FROM user WHERE id= ?');
-$req->execute(array($i));
+$req->execute(array($id));
 $data = $req->fetch();
 
 ?>
 
 <!-- Formulaire de modification -->
 <form method="post" action="../../../Traitement/User/Info/GestionT.php">
+  id:
+  <input type="text" name="id" readonly value=<?php echo $id;?>>
+  <br><br>
 
   login:
 	<input type="text" name="login" value=<?php echo $data['login'];?>>
@@ -359,8 +362,8 @@ public function delete()
   <form method="post" action=<?php echo $_SERVER['SCRIPT_NAME']; ?>>
 
   taper l'id à supprimer
-  <input type="number" name="delete"><br></br>
-  <input type="submit" value="supprimer" onclick=""/><br>
+  <input type="text" name="delete" value='rien'><br></br>
+  <input type="submit" value="supprimer" /><br>
 
   <?php
   try{
@@ -370,8 +373,12 @@ public function delete()
   catch(Exception $e){
     die('Erreur:'.$e->getMessage());
   }
+  ini_set('display_errors', 'off'); // pour ne pas afficher l'erreur à cause de la valeur par défaut du post delete qui permet de ne pas supprimer un id en boucle
   $req2=$bdd->prepare('DELETE FROM user WHERE id = ?');
   $req2->execute(array($_POST['delete']));
+  error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
+
 
 /* à utiliser si on décide de modifier id dans la base de données, aucun template ou css pour des raison pratique écidente.
   ?>
@@ -406,6 +413,42 @@ public function delete()
   <br><br>
 
   <?php */
+}
+
+public function ModificationGestion(SetUpGestion $connexion)
+{
+
+//  setcookie('login',$_SESSION['login'], time() + 365*24*3600, null, null, false, true);
+
+
+  $nom = $connexion->getNom();
+  $prenom = $connexion->getPrenom();
+  $mail = $connexion->getMail();
+  $login =$connexion->getLogin();
+  $mdp =$connexion->getMdp();
+  $admin =$connexion->getAdmin();
+  $id =$connexion->getId();
+
+
+  try{
+    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+  }
+
+  catch(Exception $e){
+    die('Erreur:'.$e->getMessage());
+  }
+
+
+
+  //Modification dans la table utilisateur
+    $req = $bdd->prepare('UPDATE user SET login = ?, nom = ?, prenom = ?, mail = ?, mdp = ?, mdpc = ?, admin = ?  WHERE id = ?');
+    $a = $req -> execute(array($login, $nom,$prenom, $mail, $mdp, md5($mdp), $admin, $id));
+
+
+    $this-> Deconnexion();
+
+    $_SESSION['login'] = $login;
+
 }
 
 
