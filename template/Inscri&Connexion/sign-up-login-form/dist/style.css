@@ -1,3 +1,6 @@
+@import "compass/css3";
+
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -22,12 +25,12 @@ a:hover {
 }
 
 .form {
-  background: rgba(80, 23, 85, 0.9);
+  background: #0c062e;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
   border-radius: 4px;
-  box-shadow: 0 4px 10px 4px rgba(80, 23, 85, 0.3);
+  box-shadow: 0 4px 10px 4px #b01ba5;
 }
 
 .tab-group {
@@ -55,12 +58,12 @@ a:hover {
   transition: .5s ease;
 }
 .tab-group li a:hover {
-  background: #179b77;
+  background: #b01ba5;
   color: #ffffff;
 }
 .tab-group .active a {
-  background: #1ab188;
-  color: #ffffff;
+  background: White;
+  color: black;
 }
 
 .tab-content > div:last-child {
@@ -88,7 +91,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+  color: #b01ba5;
 }
 
 label.active {
@@ -157,14 +160,14 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
+  background: #b01ba5;
   color: #ffffff;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   -webkit-appearance: none;
 }
 .button:hover, .button:focus {
-  background: #179b77;
+  background: #da20cd;
 }
 
 .button-block {
@@ -177,7 +180,7 @@ textarea {
   text-align: right;
 }
 .html {
-  style="background-color:red;">
+  style = "background-color:red;">
 }
 .js-modal-close {
   style="background-color:red;">
