@@ -14,7 +14,12 @@ public function reservationM(SetUpReservationPlace $ajoutReserv)
   $film = $ajoutReserv->getFilm();
   $Prix = $ajoutReserv->getPrix();
 
-var_dump($Prix);
+  var_dump($login);
+  var_dump($place);
+  var_dump($Date);
+  var_dump($heure);
+  var_dump($film);
+  var_dump($Prix);
 
   try
   {
@@ -27,6 +32,8 @@ var_dump($Prix);
  
         $req = $bdd->prepare('INSERT INTO reservationplace (login,place,date,heure,film,prix) VALUES (?,?,?,?,?,?)');
         $req -> execute(array($login,$place,$Date,$heure,$film,$Prix));
+
+      
         
 }
 
@@ -61,24 +68,5 @@ public function affichageReserv(){
 }
 }
        
-
-
-
-/*public function reservationM(SetUp $donnees){
-  //Connexion à la base de données projetweb
-
-    $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
-    $prepare = $bdd->prepare('INSERT INTO reservationplace (login, place, date, heure, film, prix) VALUES (?, ?, ?, ?, ?, ?)');
-    $a = $prepare->execute(array(
-      $donnees->getLogin(),
-      $donnees->getPlace(),
-      $donnees->getDate(),
-      $donnees->getHeure(),
-      $donnees->getFilm(),
-      $donnees->getForfait(),
-      ));
-
-}
-}*/
 
 ?>

@@ -32,13 +32,13 @@
 
 </head>
 <body>
-	<!-- Page Preloder -->
+	<!-- Page Preloder
 	<div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 
 	<!-- Header section -->
-	<?php  require_once('NavBar.html') ?>
+	<?php  require_once('NavBar.Php') ?>
 
 	<!-- Header section end -->
 

@@ -33,15 +33,15 @@ if (isset($_SESSION['login'])) {
             <ul class="main-menu primary-menu">
                 <li><a  href="home.php">Accueil</a></li>
                 <li><a href="films.php">Films</a></li>
-                <li><a href="reserver.php">Reserver une place </a></li>
+                <li><a href="Reservation.php">Reserver une place </a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <li><a href="../../../View/User/Info/Affichage.php">Affichage</a></li>
+                <li><a href="Affichage.php">Affichage</a></li>
                 
                 <?php
                 if ($_SESSION['admin'] == 1)
                 {
                 ?>    
-                    <li><a href="../../../ndex.php">Panel Admin</a></li>
+                    <li><a href="PanelAdmin.php">Panel Admin</a></li>
                 
                 <?php
                 }
