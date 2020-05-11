@@ -61,8 +61,8 @@ public function affichageReserv(){
       echo "date : ".$value['date'].'<br><br>';
       echo "heure : ".$value['heure'].'<br><br>' ;
       echo "votre film: ".$value['film'].'<br><br>' ;
-      echo "prix: ".$value['prix'].'<br><br>' ;
-      echo "3D: ".$value['3D'].'<br><br>' ;
+      echo "prix: ".$value['prix'].'<br><br><br>' ;
+      
     }
 
 }

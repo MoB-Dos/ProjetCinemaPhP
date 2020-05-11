@@ -3,7 +3,7 @@
 
 
 </head>
-<form action="../../Traitement/Reservation/ReservationT.php" method="post">
+<form action="../../../Traitement/Reservation/ReservationT.php" method="post">
 
   <?php
 
@@ -130,12 +130,10 @@
   
   <input type="hidden" id="submit" value="submit" ><br></br>
 
-  <input type="hidden" name="prix" value="retour" /> <br /></br>
+  
 
 </form>
 
-
-<input type="submit"  value="retour" onclick="window.location='../../ndex.php';" />
 
 
 </body>

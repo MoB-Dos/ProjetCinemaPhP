@@ -224,7 +224,7 @@ if (isset($_SESSION['login'])) {
             <ul class="main-menu primary-menu">
                 <li><a  href="home.php">Accueil</a></li>
                 <li><a href="films.php">Films</a></li>
-                <li><a href="reserver.php">Reserver une place </a></li>
+                <li><a href="Reservation.php">Reserver une place </a></li>
                 <li><a href="contact.php">Contact</a></li>
                 
              </ul>

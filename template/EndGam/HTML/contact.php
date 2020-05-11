@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>EndGam - Gaming Magazine Template</title>
+	<title>EndGam </title>
 	<meta charset="UTF-8">
 	<meta name="description" content="EndGam Gaming Magazine Template">
 	<meta name="keywords" content="endGam,gGaming, magazine, html">
@@ -63,27 +63,27 @@
 			<div class="row">
 				<div class="col-lg-7 order-2 order-lg-1">
 					<form class="contact-form">
-						<input type="text" placeholder="Your name">
-						<input type="text" placeholder="Your e-mail">
-						<input type="text" placeholder="Subject">
+						<input type="text" placeholder="Votre nom ">
+						<input type="text" placeholder="Votre e-mail">
+						<input type="text" placeholder="Sujet">
 						<textarea placeholder="Message"></textarea>
 						<button class="site-btn">Send message<img src="img/icons/double-arrow.png" alt="#"/></button>
 					</form>
 				</div>
 				<div class="col-lg-5 order-1 order-lg-2 contact-text text-white">
-					<h3>Howdy! Say hello</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.....</p>
+					<h3>Formulaire de contact</h3>
+					<p>Ce formulaire de contact est mis à votre disposition afin de pouvour répondre à votre demande dans les meilleurs délais.</p>
 					<div class="cont-info">
 						<div class="ci-icon"><img src="img/icons/location.png" alt=""></div>
-						<div class="ci-text">Main Str, no 23, New York</div>
+						<div class="ci-text">Avenue du général de gaule</div>
 					</div>
 					<div class="cont-info">
 						<div class="ci-icon"><img src="img/icons/phone.png" alt=""></div>
-						<div class="ci-text">+546 990221 123</div>
+						<div class="ci-text">07 00 00 00 00</div>
 					</div>
 					<div class="cont-info">
 						<div class="ci-icon"><img src="img/icons/mail.png" alt=""></div>
-						<div class="ci-text">hosting@contact.com</div>
+						<div class="ci-text">cinéma@lprs.fr</div>
 					</div>
 				</div>
 			</div>

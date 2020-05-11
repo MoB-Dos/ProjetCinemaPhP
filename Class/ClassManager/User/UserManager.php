@@ -283,7 +283,7 @@ $data = $req->fetch();
 	<input type="text" name="mail" value=<?php echo $data['mail'];?>>
   <br><br>
 
-<input type="submit" value="Envoyer"/>
+<input type="submit" value="Envoyer"/><br><br>
 
 </form>
 

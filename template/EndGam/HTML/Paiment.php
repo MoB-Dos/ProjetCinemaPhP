@@ -26,7 +26,6 @@
 
 	<?php
 	 require '../../../Class/ClassManager/User/UserManager.php';
-	 require '../../../Class/ClassManager/reservation/reservationManager.php';
      require '../../../Class/SetUp/SetUpUser.php';
 	?>
 
@@ -45,7 +44,7 @@
 	<!-- Page top section -->
 	<section class="page-top-section set-bg" data-setbg="img/page-top-bg/1.jpg">
 		<div class="page-info">
-			<h2>Affichage</h2>
+			<h2>Reservation</h2>
 			<div class="site-breadcrumb">
 			<a href="home.php"> Home</a> 
 			
@@ -63,42 +62,36 @@
 				<div class="col-xl-9 col-lg-8 col-md-7 game-single-content">
 			
 					
-					
-                <?php
+				<form action="../../Traitement/Reservation/ReservationT.php" method="post">
 
-                
-                
+    <h6 >Vos informations sont juste </h6><br/> <br/>
 
+   Maintenant procédons au paiment <br/><br/>
 
-				$show = new UserManager();
-				$reserv = new reservationManager();
-								
-                $act = $show->affichage();
-
-                $act = $show->AffichageModification(); 
-				
-				$act2 = $reserv->affichageReserv();
-
-
-                ?>
-
-            
-					
-					<div class="geme-social-share pt-5 d-flex">
-						<p>Share:</p>
-						<a href="#"><i class="fa fa-pinterest"></i></a>
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
-						<a href="#"><i class="fa fa-dribbble"></i></a>
-						<a href="#"><i class="fa fa-behance"></i></a>
-					</div>
-				</div>
+  
 
 
 
+  <form action="traitement.php" method="POST" >
+    <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_1VqGh9rrBbRAYogAHGzBd3cW00YfRjLwRm"
+    data-amount="100"
+    data-name="VOTRESITE.FR"
+    data-description="Test charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-currency="eur">
+    </script>
+  </form>
+  
 
+  
+  <input type="hidden" id="submit" value="submit" ><br></br>
 
+  <input type="hidden" name="prix" value="retour" /> <br /></br>
 
+</form>
 
 			</div>
 		</div>

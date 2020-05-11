@@ -7,6 +7,7 @@ class AjoutFilmManager
 public function AjoutImage($nametrue)
 {
 
+	//avec cette fonction on sauvegarde limage dans un fichier pour pouvoir la recuperer plus tard 
 $dossier = "../../Image/Affiche";
 $nomdufichier = $nametrue;
 
@@ -35,7 +36,9 @@ if (isset($_FILES['photo']) AND $_FILES['photo']['error'] == 0)
         else
         {
             echo 'image trop grosse';
-        }
+		}
+		
+	//la gestion des autres erreur possible 	
 }
 elseif (isset($_FILES['photo']) AND $_FILES['photo']['error'] == UPLOAD_ERR_NO_FILE)
 {
@@ -68,6 +71,7 @@ else
 public function AjoutPage($nametrue,$Synopsis,$Date)
 {
 
+	//dans cette fonction on va créer une nouvelle page dans un dossier spécifique 
 	
     $film = $nametrue;
     $direction = "../../template/EndGam/HTML/Film/Page".$film.".php";
@@ -99,7 +103,9 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
     
     // 2 : on fera ici nos opérations sur le fichier...
     $ligne = fgets($monfichier);
-    
+	
+	
+	//le modele de la page est totalement ecrit a l'interieur 
     fputs($monfichier, 
 
 '
@@ -264,6 +270,8 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
 
 public function AjoutBDD($nametrue,$Synopsis,$Date) 
 {
+
+	//dans cette fonction on ajoute simplement limage, le lien de la page et les info sur le film dans la bdd pour laffichage 
     
     $lien = "http://localhost/projetcinemaphp/template/EndGam/HTML/Film/Page$nametrue.php";
     $image = "http://localhost/projetcinemaphp/Image/Affiche/$nametrue.jpg";

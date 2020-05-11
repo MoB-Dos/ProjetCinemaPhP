@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>EndGam - Gaming Magazine Template</title>
+	<title>EndGam</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="EndGam Gaming Magazine Template">
 	<meta name="keywords" content="endGam,gGaming, magazine, html">
@@ -62,7 +62,7 @@
 				<div class="col-xl-9 col-lg-8 col-md-7 game-single-content">
 			
 					
-				<form action="../../Traitement/Reservation/ReservationT.php" method="post">
+				<form action="../../../Traitement/Reservation/ReservationT.php" method="post">
 
   <?php
 
@@ -142,10 +142,21 @@
     var e = parseInt(a) + parseInt(b) + parseInt(c) + parseInt(d);
 
     test(e,f)
-
+	
     
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
     function test(e,f)
@@ -158,12 +169,14 @@
      
       
       document.getElementById("submit").type = "submit"; 
+
+	  
       document.getElementById("demo3").innerHTML = "";
 
 
     }else
     {
-
+		
       document.getElementById("demo3").innerHTML = "les comptes ne sont pas bon ou il manque des 0 ";
     
     }
@@ -177,14 +190,18 @@
 
    
    Nombre de Reduction : <br/>
-  <input type="number" name="etudiant" onchange="myFunction()"  id="mySelect"  min=0  /> tarif etudiant <br />
-  <input type="number" name="enfant" onchange="myFunction()"  id="mySelect1" min=0  /> tarif enfant<br />
-  <input type="number" name="navigo" onchange="myFunction()"  id="mySelect2" min=0  /> navigo<br />
-  <input type="number" name="normal" onchange="myFunction()"  id="mySelect3" min=0  /> rien<br /></br>
+  <input type="number" name="etudiant" onchange="myFunction()"  id="mySelect"  min=0  value="0"/> tarif etudiant <br />
+  <input type="number" name="enfant" onchange="myFunction()"  id="mySelect1" min=0  value="0"/> tarif enfant<br />
+  <input type="number" name="navigo" onchange="myFunction()"  id="mySelect2" min=0  value="0"/> navigo<br />
+  <input type="number" name="normal" onchange="myFunction()"  id="mySelect3" min=0  value="0"/> rien<br /></br>
 
  
 
   <p id="demo3"></p>
+
+
+
+  
 
   
   <input type="hidden" id="submit" value="submit" ><br></br>
