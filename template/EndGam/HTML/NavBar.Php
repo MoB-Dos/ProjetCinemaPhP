@@ -20,7 +20,7 @@ if (isset($_SESSION['login'])) {
     </div>
     <div class="header-bar-warp d-flex">
         <!-- site logo -->
-        <a href="home.html" class="site-logo">
+        <a href="home.php" class="site-logo">
             <img src="./img/logo.png" alt="">
         </a>
         <nav class="top-nav-area w-100">
