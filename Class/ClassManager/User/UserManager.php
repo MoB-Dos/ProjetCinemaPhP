@@ -461,10 +461,14 @@ public function MdpOublier(SetUpGestion $connexion)
 
   $mail = $connexion->getMail();
   $verif=rand(4000, 9999);
+  setcookie('verif',$verif, time() + 365*24*3600, null, null, false, true);
+  setcookie('mail',$mail, time() + 365*24*3600, null, null, false, true);
   $req = $bdd->prepare('SELECT id FROM user WHERE mail= ?');
   $req -> execute(array($mail));
   $objet = "Rebienvenue dans le club !";
-  $sujet = "Voici votre code unique : ".$verif."";
+  $adresse = "http://".$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+  $_SESSION['adresse'] = $adresse;
+  $sujet = "Voici votre code unique : ".$verif." Pour changer votre mot de passe : http://localhost/ProjetCinemaPhP/Traitement/User/info/MdpOublierT2.php";
   $email = $mail;
   $this-> Mail($objet,$sujet,$email);
   ?>
@@ -477,18 +481,29 @@ public function MdpOublier(SetUpGestion $connexion)
   </script>
 
 <?php
+exit();
+header('location: ../../../View/User/MdpOublier2.php');
 
-header("location: ../../../View/User/MdpOublier2.php");
+//header("location: ../../../View/User/MdpOublier2.php");
 
 
 }
-public function MdpOublier2(SetUpGestion $connexion)
+public function MdpOublier2()
 {
+  var_dump($_COOKIE['verif']);
 
-  $mdp = $ajout->getMdp();
-  $mdpc = $ajout->getMdp2();
+  $mdp = $_POST['mdp'];
+  $mdpc = $_POST['mdp2'];
+  $mail = $_COOKIE['mail'];
 
+  if ($_POST["verif"]=$_COOKIE["verif"]) {
+    try{
+      $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
+    }
 
+    catch(Exception $e){
+      die('Erreur:'.$e->getMessage());
+    }
   $req = $bdd->prepare('SELECT id FROM user WHERE mail= ?');
   $req -> execute(array($mail));
 
@@ -496,18 +511,17 @@ public function MdpOublier2(SetUpGestion $connexion)
     if ($mdp == $mdpc)
     {
 
-      $mdpc = md5($mdpc);
-
-      $req = $bdd->prepare('UPDATE user SET mdp = ?, mdpc= ? WHERE mail = ?');
-      $req -> execute(array($mdpc,$mdp,$mail));
-
-      //Envoi du mail de confirmation
-      $objet = "Rebienvenue dans le club !";
-      $sujet = "Pour changer votre mot de passe cliquer sur ce lien : https://www.zerator.com";
-      $email = $mail;
 
 
-      $this-> Mail($objet,$sujet,$email);
+    //  $req1 = $bdd->query('UPDATE user SET mdp = ?, mdpc= ? WHERE mail = ?');
+      //$req1 -> execute(array($mdpc,$mdp,$mail));
+
+      $req1 = $bdd->prepare('UPDATE user SET mdp = ?, mdpc = ? WHERE mail = ?');
+      $a = $req1 -> execute(array( $mdp, md5($mdp), $mail));
+
+
+var_dump($a)
+
       ?>
         <script type="text/javascript">
 
@@ -516,12 +530,14 @@ public function MdpOublier2(SetUpGestion $connexion)
 
             alert(msg);
 
-            header("location: ../../ndex.php");
 
         </script>
       <?php
 
-
+}
+else {
+  echo"nul";
+}
 }}
 
 public function Modification(SetUpUser $connexion)

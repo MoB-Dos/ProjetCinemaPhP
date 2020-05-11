@@ -5,7 +5,8 @@
 
           <h3>cheh, fallait pas entrer un mail au hazard</h3>
 
-            <button class="primary-btn text-uppercase">confirmation !</button>
+            <button class="primary-btn text-uppercase" onclick="window.location='MdpOublier2';">confirmation !</button>
+
     </form>
 
     <input type="submit" value="retour" onclick="window.location='../../ndex.php';" />

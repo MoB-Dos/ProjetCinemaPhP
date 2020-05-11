@@ -9,5 +9,7 @@ require '../../../Class/SetUp/SetUpUser.php';
 
 $show = new UserManager();
 
-$act = $show->MdpOublier();
+$act = $show->MdpOublier(
+  
+);
 ?>

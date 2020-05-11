@@ -27,12 +27,13 @@
 	<?php
 	 require '../../../Class/ClassManager/User/UserManager.php';
      require '../../../Class/SetUp/SetUpUser.php';
+		 require '../../../Class/SetUp/SetUpGestion.php';
 	?>
 
 
 </head>
 <body>
-	<!-- Page Preloder 
+	<!-- Page Preloder
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>-->
@@ -46,8 +47,8 @@
 		<div class="page-info">
 			<h2>Panel Admin</h2>
 			<div class="site-breadcrumb">
-			<a href="home.php"> Home</a> 
-			
+			<a href="home.php"> Home</a>
+
 			</div>
 		</div>
 	</section>
@@ -57,14 +58,14 @@
 	<!-- Games section -->
 	<section class="games-single-page">
 		<div class="container">
-	
+
 			<div class="row">
 				<div class="col-xl-9 col-lg-8 col-md-7 game-single-content">
-            
-                <h6> Ajout Admin</h6> </br> 
+
+                <h6> Ajout Admin</h6> </br>
 
                 <form action="../../Traitement/Admin/AjoutAdminT.php" method="post">
-    
+
                 <select name="login" required>
 						<option value="0" selected disabled >choissisez un nouvelle Admin !</option>
 						<?php
@@ -84,14 +85,14 @@
 
                         ?>
                 </select>
-                
-                
-           
+
+
+
 
             <button type="submit" value="submit" >Ajout !</button> </br> </br>
-            
-            <h6> Ajout Film </h6> </br> 
-        
+
+            <h6> Ajout Film </h6> </br>
+
             </form>
 
             <form  action="../../Traitement/Admin/AjoutFilmT.php" method="post" enctype="multipart/form-data">
@@ -107,19 +108,23 @@
             <input type="file"  id="photo" name="photo" placeholder="Affiche" accept="image/*" required /> </br> </br>
 
 
-            <button class="primary-btn text-uppercase">Insertion !</button>
+            <button class="primary-btn text-uppercase">Insertion !</button></br> </br>
             </form>
 
-             
+
+
+
+				<?php
+			 		 $show = new UserManager();
+
+			 		 $act = $show->Gestion();
+			 		 $act = $show->delete();
+
+?>
 
 
 
 
-
-
-
-
-	
 			</div>
 		</div>
 	</section>
