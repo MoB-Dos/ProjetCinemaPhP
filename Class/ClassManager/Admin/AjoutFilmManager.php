@@ -271,7 +271,7 @@ public function AjoutPage($nametrue,$Synopsis,$Date)
 public function AjoutBDD($nametrue,$Synopsis,$Date) 
 {
 
-	//dans cette fonction on ajoute simplement limage, le lien de la page et les info sur le film dans la bdd pour laffichage 
+	//dans cette fonction on ajoute simplement l'image, le lien de la page et les info sur le film dans la bdd pour laffichage 
     
     $lien = "http://localhost/projetcinemaphp/template/EndGam/HTML/Film/Page$nametrue.php";
     $image = "http://localhost/projetcinemaphp/Image/Affiche/$nametrue.jpg";

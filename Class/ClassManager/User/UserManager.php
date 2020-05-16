@@ -75,7 +75,7 @@ public function inscription(SetUpUser $ajout)
 
               alert(msg);
 
-              header("location: ../../ndex.php");
+              header("location: ../../template/EndGam/HTML/home.php");
 
           </script>
         <?php
@@ -144,7 +144,8 @@ public function connexion(SetUpUser $connexion)
 
           setcookie('admin','0', time() + 365*24*3600, null, null, false, true);
           $_SESSION['admin'] = 0;
-          header ("location: ../../ndex.php");
+          header("location: ../../template/EndGam/HTML/home.php");
+
         }
 
         if ($data['admin'] == '1')
@@ -152,7 +153,8 @@ public function connexion(SetUpUser $connexion)
           //Renvoi vers la page Admin
           setcookie('admin', '1', time() + 365*24*3600, null, null, false, true);
           $_SESSION['admin'] = 1;
-          header ('location: ../../ndex.php');
+          header("location: ../../template/EndGam/HTML/home.php");
+
 
         }
       }

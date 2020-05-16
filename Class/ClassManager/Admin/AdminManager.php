@@ -9,7 +9,7 @@ class AdminManager
 public function AjoutAdmin($login)
 {
 
-
+  //avec cette fonction on change juste la valeur bool dans la bdd en 1 pour le passer en admin 
     var_dump($login);
 
     try

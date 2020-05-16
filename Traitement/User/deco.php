@@ -8,6 +8,7 @@ $deco = new UserManager;
 
 $act = $deco->Deconnexion();
 
-header("location: ../../ndex.php");
+header("location: ../../template/EndGam/HTML/home.php");
+
 
 ?>

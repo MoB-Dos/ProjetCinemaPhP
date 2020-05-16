@@ -11,7 +11,7 @@ class CommentManager
 
     public function CommentAff($film)
     {
-
+      //on affiche les commentaire pour un film en particulier comme ca chaque page possede ses porpre films 
         
         try
         {
@@ -49,6 +49,8 @@ class CommentManager
 
    public function ajoutCommentaire(SetUpComment $ajout)
    {
+
+    //un ajout simple de commentaire dans la BDD
 
     $message = $ajout->getMessage();
     $note = $ajout->getNote();
