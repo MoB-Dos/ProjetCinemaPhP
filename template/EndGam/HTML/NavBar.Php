@@ -36,16 +36,16 @@ if (isset($_SESSION['login'])) {
                 <li><a href="Reservation.php">Reserver une place </a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="Affichage.php">Affichage</a></li>
-                
+
                 <?php
                 if ($_SESSION['admin'] == 1)
                 {
-                ?>    
+                ?>
                     <li><a href="PanelAdmin.php">Panel Admin</a></li>
-                
+
                 <?php
                 }
-                ?>  
+                ?>
 
              </ul>
         </nav>
@@ -74,7 +74,7 @@ if (isset($_SESSION['login'])) {
             <img src="./img/logo.png" alt="">
         </a>
         <nav class="top-nav-area w-100">
-            
+
             <div class="user-panel">
                 <!--<a href="../../../View/User/Connexion.html">Se connecter</a> / <a href="../../../View/User/Inscription.html">S'inscrire</a>-->
 
@@ -193,7 +193,7 @@ if (isset($_SESSION['login'])) {
 						                  <input type="password" id="mdp" name="mdp" required autocomplete="off"/>
 						                </div>
 
-						                <p class="forgot"><a href="#">Mot de passe oublier ?</a></p>
+						                <p class="forgot"><a href="../../../View/User/MdpOublier.php">Mot de passe oublier ?</a></p>
 
 						                <button class="button button-block"/>Connexion</button>
 
@@ -216,17 +216,17 @@ if (isset($_SESSION['login'])) {
 
 					</div>
 					<!-- Menu -->
-				
+
 				</nav>
             </div>
-            
+
             <!-- Menu -->
             <ul class="main-menu primary-menu">
                 <li><a  href="home.php">Accueil</a></li>
                 <li><a href="films.php">Films</a></li>
                 <li><a href="Reservation.php">Reserver une place </a></li>
                 <li><a href="contact.php">Contact</a></li>
-                
+
              </ul>
         </nav>
     </div>

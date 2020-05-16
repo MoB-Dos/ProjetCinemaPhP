@@ -359,59 +359,27 @@ public function delete()
 {
   ?>
   <form method="post" action=<?php echo $_SERVER['SCRIPT_NAME']; ?>>
-
+<!-- on envoie les données du formulaire dans la page actuel -->
   taper l'id à supprimer
   <input type="text" name="delete" value='rien'><br></br>
   <input type="submit" value="supprimer" /><br>
 
   <?php
   try{
+    // connexion à la base de donnés
+
     $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
   }
 
   catch(Exception $e){
     die('Erreur:'.$e->getMessage());
   }
-  ini_set('display_errors', 'off'); // pour ne pas afficher l'erreur à cause de la valeur par défaut du post delete qui permet de ne pas supprimer un id en boucle
+  ini_set('display_errors', 'off'); // suppresion d'erreur inutile
+  //on supprime les données de la table Utilisateur
   $req2=$bdd->prepare('DELETE FROM user WHERE id = ?');
   $req2->execute(array($_POST['delete']));
   error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
-
-
-/* à utiliser si on décide de modifier id dans la base de données, aucun template ou css pour des raison pratique écidente.
-  ?>
-  <h4> Attention la suppression d'un id implique la création d'un nouvel utilisateur avec cet id pour une meilleur gestion</h4> </br>
-
-  id:
-  <input type="text" name="id" >
-  <br><br>
-
-  login:
-  <input type="text" name="login" >
-  <br><br>
-
-  nom:
-  <input type="text" name="nom" >
-  <br><br>
-
-  prenom:
-  <input type="text" name="prenom" >
-  <br><br>
-
-  mail:
-  <input type="text" name="mail" >
-  <br><br>
-
-  Mdp:
-  <input type="text" name="mdp" >
-  <br><br>
-
-  admin :
-  <input type="text" name="admin" >
-  <br><br>
-
-  <?php */
 }
 
 public function ModificationGestion(SetUpGestion $connexion)
@@ -419,7 +387,7 @@ public function ModificationGestion(SetUpGestion $connexion)
 
 //  setcookie('login',$_SESSION['login'], time() + 365*24*3600, null, null, false, true);
 
-
+ //on initialise nos variables
   $nom = $connexion->getNom();
   $prenom = $connexion->getPrenom();
   $mail = $connexion->getMail();
@@ -428,7 +396,7 @@ public function ModificationGestion(SetUpGestion $connexion)
   $admin =$connexion->getAdmin();
   $id =$connexion->getId();
 
-
+// connexion à la base de donnés
   try{
     $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
   }
@@ -443,7 +411,7 @@ public function ModificationGestion(SetUpGestion $connexion)
     $req = $bdd->prepare('UPDATE user SET login = ?, nom = ?, prenom = ?, mail = ?, mdp = ?, mdpc = ?, admin = ?  WHERE id = ?');
     $a = $req -> execute(array($login, $nom,$prenom, $mail, $mdp, md5($mdp), $admin, $id));
 
-
+//deconnexion
     $this-> Deconnexion();
 
     $_SESSION['login'] = $login;
@@ -452,29 +420,31 @@ public function ModificationGestion(SetUpGestion $connexion)
 public function MdpOublier(SetUpGestion $connexion)
 {
   try{
+    //connexion à la base de données
     $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
   }
 
   catch(Exception $e){
     die('Erreur:'.$e->getMessage());
   }
-
+//initialisation des variables mail et verif
   $mail = $connexion->getMail();
   $verif=rand(4000, 9999);
+  // initialisation des varaibles verif et mail
   setcookie('verif',$verif, time() + 365*24*3600, null, null, false, true);
   setcookie('mail',$mail, time() + 365*24*3600, null, null, false, true);
+  //modification de la table utilisateur
   $req = $bdd->prepare('SELECT id FROM user WHERE mail= ?');
   $req -> execute(array($mail));
+  //on rentre les différent champ du mail
   $objet = "Rebienvenue dans le club !";
-  $adresse = "http://".$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
-  $_SESSION['adresse'] = $adresse;
   $sujet = "Voici votre code unique : ".$verif." Pour changer votre mot de passe : http://localhost/ProjetCinemaPhP/Traitement/User/info/MdpOublierT2.php";
-  $email = $mail;
+  $email = $mail; //c'est pour phpmailer
   $this-> Mail($objet,$sujet,$email);
   ?>
   <script type="text/javascript">
 
-        var msg="mail envoyer !"
+        var msg="mail envoyer, suivez ces instruction pour changer votre mot de passe"
 
 
       alert(msg);
@@ -482,6 +452,7 @@ public function MdpOublier(SetUpGestion $connexion)
 
 <?php
 exit();
+//redirection à mdp2
 header('location: ../../../View/User/MdpOublier2.php');
 
 //header("location: ../../../View/User/MdpOublier2.php");
@@ -490,20 +461,23 @@ header('location: ../../../View/User/MdpOublier2.php');
 }
 public function MdpOublier2()
 {
-  var_dump($_COOKIE['verif']);
-
+//initialisation des variables
   $mdp = $_POST['mdp'];
   $mdpc = $_POST['mdp2'];
   $mail = $_COOKIE['mail'];
 
+//si le verif saisit est égal au cookie verif
   if ($_POST["verif"]=$_COOKIE["verif"]) {
     try{
+      //connexion à la base de données
+
       $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
     }
 
     catch(Exception $e){
       die('Erreur:'.$e->getMessage());
     }
+    //on affiche les données de la table utilisateur
   $req = $bdd->prepare('SELECT id FROM user WHERE mail= ?');
   $req -> execute(array($mail));
 
@@ -513,20 +487,22 @@ public function MdpOublier2()
 
 
 
-    //  $req1 = $bdd->query('UPDATE user SET mdp = ?, mdpc= ? WHERE mail = ?');
-      //$req1 -> execute(array($mdpc,$mdp,$mail));
 
+      // on modifie les données de la table Utilisateur
       $req1 = $bdd->prepare('UPDATE user SET mdp = ?, mdpc = ? WHERE mail = ?');
       $a = $req1 -> execute(array( $mdp, md5($mdp), $mail));
 
 
 var_dump($a)
 
+
+
       ?>
+
         <script type="text/javascript">
-
+        //code javascript
               var msg="Modification de mdp réussi !"
-
+              //on affiche un message sous forme d'alerte
 
             alert(msg);
 
@@ -535,22 +511,23 @@ var_dump($a)
       <?php
 
 }
-else {
+else { // sinon on affiche nul
   echo"nul";
-}
+} //fin de si
 }}
 
 public function Modification(SetUpUser $connexion)
 {
-
+//initialisation du cookie login
   setcookie('login',$_SESSION['login'], time() + 365*24*3600, null, null, false, true);
 
-
+//initialisation des variables
   $nom = $connexion->getNom();
   $prenom = $connexion->getPrenom();
   $mail = $connexion->getMail();
   $login =$connexion->getLogin();
 
+//connexiob à la basse de données
   try{
     $bdd= new PDO('mysql:host=localhost;dbname=cinemaphp;charset=utf8','root','');
   }
